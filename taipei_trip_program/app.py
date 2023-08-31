@@ -1,7 +1,14 @@
 from flask import *
+from routes.attractions import attractions
+from routes.mrts import mrts
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
+
+# attractions route setting
+app.register_blueprint(attractions, url_prefix="/api")
+app.register_blueprint(mrts, url_prefix="/api")
+
 
 # Pages
 @app.route("/")
@@ -17,4 +24,9 @@ def booking():
 def thankyou():
 	return render_template("thankyou.html")
 
-app.run(host="0.0.0.0", port=3000)
+#api
+
+
+
+# app.run(host="0.0.0.0", port=3000)
+app.run(port=3000)
