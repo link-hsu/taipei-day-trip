@@ -17,13 +17,12 @@ def filter_imagelink(file):
 def search_page_and_keyword():
     page = request.args.get("page", "")
     keyword = request.args.get("keyword", "")
-    print(keyword)
 
     def data_for_page(name_data, data_per_page):
         page_results = []
         for i in range(0, len(name_data), data_per_page):
             grouping = name_data[i:i + data_per_page]
-            page_result = {"nextPage": (i // data_per_page), "data": grouping}
+            page_result = {"nextPage": (i // data_per_page) + 1, "data": grouping}
             page_results.append(page_result)
         return page_results
 
@@ -48,7 +47,7 @@ def search_page_and_keyword():
             if page:
                 results = data_for_page(results_total, 12)
                 for result in results:
-                    if result["nextPage"] == int(page):
+                    if result["nextPage"] - 1 == int(page):
                         return jsonify(result), 200
                     else:
                         return jsonify({"error": True, "message": "Searching page doesn't exist"}), 500
@@ -57,7 +56,7 @@ def search_page_and_keyword():
         elif page:
             results = data_for_page(data, 12)
             for result in results:
-                if result["nextPage"] == int(page):
+                if result["nextPage"] - 1 == int(page):
                     return jsonify(result), 200
     except Exception as e:
         return jsonify({"error": True, "message": str(e)}), 500
