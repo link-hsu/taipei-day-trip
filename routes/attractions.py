@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from models import attractions as attractions_model
 import json
 import re
-import logging
+
 
 attractions = Blueprint("attractions", __name__)
 
@@ -35,9 +35,12 @@ def search_page_and_keyword():
         results_total = []
         if keyword:
             for item in data:
-                print[item["mrt"]]
                 if not item["mrt"]:
                     continue
+                print("this is database")
+                print(item["mrt"])
+                print("this is input")
+                print(keyword)
                 if keyword in item["mrt"] or re.search(keyword, item["name"]):
                     results_total.append(item)
             if not results_total:
