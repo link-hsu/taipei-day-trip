@@ -1,10 +1,13 @@
 from flask import *
 from routes.attractions import attractions
 from routes.mrts import mrts
+import logging
+
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
+logging.basicConfig(filename='myapp.log', level=logging.INFO)
 # attractions route setting
 app.register_blueprint(attractions, url_prefix="/api/attractions")
 app.register_blueprint(mrts, url_prefix="/api/mrts")

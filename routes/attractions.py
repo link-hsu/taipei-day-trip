@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from models import attractions as attractions_model
 import json
 import re
+import logging
 
 attractions = Blueprint("attractions", __name__)
 
@@ -16,6 +17,7 @@ def filter_imagelink(file):
 def search_page_and_keyword():
     page = request.args.get("page", "")
     keyword = request.args.get("keyword", "")
+    print(keyword)
 
     def data_for_page(name_data, data_per_page):
         page_results = []
@@ -33,6 +35,7 @@ def search_page_and_keyword():
         results_total = []
         if keyword:
             for item in data:
+                print[item["mrt"]]
                 if not item["mrt"]:
                     continue
                 if keyword in item["mrt"] or re.search(keyword, item["name"]):
