@@ -23,7 +23,7 @@ def search_page_and_keyword():
         page_results = []
         for i in range(0, len(name_data), data_per_page):
             grouping = name_data[i:i + data_per_page]
-            page_result = {"nextPage": (i // data_per_page) + 1, "data": grouping}
+            page_result = {"nextPage": (i // data_per_page), "data": grouping}
             page_results.append(page_result)
         return page_results
 
