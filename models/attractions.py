@@ -46,6 +46,7 @@ def get_attraction_name_join_image():
     return json.dumps(data)
 
 def get_attraction_mrts_descending():
+    """api for api/mrts"""
     con = mysql.connector.connect(
     user = "root",
     password = "123456789",
