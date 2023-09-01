@@ -7,7 +7,8 @@ def get_attraction_table(table_name):
         user="root",
         password="123456789",
         host="localhost",
-        database="attraction")
+        database="attraction",
+        auth_plugin="mysql_native_password")
     
     cursor = con.cursor()
     query = f"SELECT * FROM attraction_{table_name}"
@@ -33,7 +34,8 @@ def get_attraction_name_join_image():
     user = "root",
     password = "123456789",
     host = "localhost",
-    database = "attraction")
+    database = "attraction",
+    auth_plugin="mysql_native_password")
 
     cursor = con.cursor()
     cursor.execute("SELECT * FROM attraction_name n INNER JOIN attraction_image i ON n.name = i.name")
@@ -48,7 +50,8 @@ def get_attraction_mrts_descending():
     user = "root",
     password = "123456789",
     host = "localhost",
-    database = "attraction")
+    database = "attraction",
+    auth_plugin="mysql_native_password")
 
     cursor = con.cursor()
     cursor.execute("SELECT mrt, count FROM attraction_mrt ORDER BY count DESC")

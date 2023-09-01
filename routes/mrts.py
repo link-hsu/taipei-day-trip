@@ -4,7 +4,7 @@ import json
 
 mrts = Blueprint("mrts", __name__)
 
-@mrts.route("/mrts", methods=["GET"])
+@mrts.route("/", methods=["GET"])
 def query_mrts():
     try:
         data = json.loads(attractions_model.get_attraction_mrts_descending())

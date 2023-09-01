@@ -12,7 +12,7 @@ def filter_imagelink(file):
     images = ["https://" + image for image in images if is_imagelink(image)]    
     return images
 
-@attractions.route("/attractions", methods=["GET"])
+@attractions.route("", methods=["GET"])
 def search_page_and_keyword():
     page = request.args.get("page", "")
     keyword = request.args.get("keyword", "")
@@ -57,7 +57,7 @@ def search_page_and_keyword():
         return jsonify({"error": True, "message": str(e)}), 500
             
 
-@attractions.route("/attractions/<attractionID>")
+@attractions.route("/<attractionID>")
 def search_by_id(attractionID):
     try:
         data = json.loads(attractions_model.get_attraction_table("name"))

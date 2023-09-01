@@ -10,7 +10,8 @@ con = mysql.connector.connect(
     user = "root",
     password = "123456789",
     host = "localhost",
-    database = "attraction")
+    database = "attraction",
+    auth_plugin="mysql_native_password")
 print("connnect to mysql successfully")
 cursor = con.cursor()
 
