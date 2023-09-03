@@ -39,7 +39,7 @@ for attraction in attractions:
 
     images_sep = filter_imagelink(attraction["file"])
 
-    cursor.execute("INSERT INTO attraction_name (id_name, name, category, description, address, transport, mrt, lat, longitude, images) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+    cursor.execute("INSERT INTO attraction_name (id, name, category, description, address, transport, mrt, lat, longitude, images) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                    (id, name, category, description, address, transport, mrt, lat, lng, images))
     con.commit()
     

@@ -1,11 +1,8 @@
 CREATE DATABASE attraction;
 
-CREATE TABLE attraction_name;
-CREATE TABLE attraction_image;
-CREATE TABLE attraction_mrt;
-
 CREATE TABLE attraction_name (
 id_name BIGINT PRIMARY KEY AUTO_INCREMENT,
+id BIGINT,
 name VARCHAR(255),
 category VARCHAR(255),
 description TEXT,
@@ -17,6 +14,7 @@ longitude DECIMAL(13, 10),
 images TEXT,
 INDEX(name),
 INDEX(mrt));
+
 
 CREATE TABLE attraction_image (
 id_image BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -31,4 +29,74 @@ count BIGINT,
 FOREIGN KEY (mrt) REFERENCES attraction_name(mrt)
 );
 
-SELECT * FROM attraction_name n INNER JOIN attraction_image i ON [n.name](http://n.name) = i.name;
+
+--搜尋頁面
+SELECT
+  @count := @count + 1 AS count, 
+  Floor(@count / 12) + 1 AS nextPage,
+  JSON_OBJECT(
+    'id', id,
+    'name', name,
+    'category', category,
+    'description', description,
+    'address', address,
+    'transport', transport,
+    'mrt', mrt,
+    'lat', lat,
+    'lng', longitude,
+    'images', images
+  ) AS data
+FROM attraction_name, (SELECT @count := 0) AS counter;
+
+
+-- 關鍵字搜尋
+SELECT
+  @count := @count + 1 AS count, 
+  Floor(@count / 12) + 1 AS nextPage,
+  JSON_OBJECT(
+    'id', id,
+    'name', name,
+    'category', category,
+    'description', description,
+    'address', address,
+    'transport', transport,
+    'mrt', mrt,
+    'lat', lat,
+    'lng', longitude,
+    'images', images
+  ) AS data
+FROM attraction_name, (SELECT @count := 0) AS counter
+WHERE mrt = '' OR name LIKE '%北%';
+
+SELECT * FROM attraction_name n INNER JOIN attraction_image i ON n.name = i.name;
+
+
+-- api page keyword
+CREATE TABLE api_page_keyword AS
+SELECT
+  nextPage,
+  JSON_OBJECT(
+    'id', id,
+    'name', name,
+    'category', category,
+    'description', description,
+    'address', address,
+    'transport', transport,
+    'mrt', mrt,
+    'lat', lat,
+    'lng', longitude,
+    'images', images
+  ) AS data
+FROM (
+  SELECT
+    @count := @count + 1 AS count,
+    Floor(@count / 12) + 1 AS nextPage,
+    id, name, category, description, address, transport, mrt, lat, longitude, images
+  FROM attraction_name, (SELECT @count := -1) AS counter
+) AS subquery;
+
+
+
+
+ALTER TABLE api_page_keyword
+MODIFY COLUMN nextPage BIGINT;
