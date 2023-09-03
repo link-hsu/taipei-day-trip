@@ -118,7 +118,7 @@ def get_attraction_search_id(id):
 
     cursor.execute(query, (int(id),))    
     results = cursor.fetchall()
-    print(results)
+    
     if not results:
         return jsonify({"error": True, "message": "attraction doesn't exist"}), 500
     result = {
