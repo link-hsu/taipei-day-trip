@@ -129,8 +129,8 @@ def get_attraction_search_id(id):
             "address": results[0][4],
             "transport": results[0][5],
             "mrt": results[0][6],
-            "lat": results[0][7],
-            "longitude": results[0][8],
+            "lat": float(results[0][7]),
+            "longitude": float(results[0][8]),
             "images": filter_imagelink(results[0][9]) }
     return json.dumps(result)
 
