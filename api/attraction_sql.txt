@@ -1,8 +1,7 @@
 CREATE DATABASE attraction;
 
 CREATE TABLE attraction_name (
-id_name BIGINT PRIMARY KEY AUTO_INCREMENT,
-id BIGINT,
+id_name BIGINT PRIMARY KEY,
 name VARCHAR(255),
 category VARCHAR(255),
 description TEXT,
@@ -29,6 +28,16 @@ count BIGINT,
 FOREIGN KEY (mrt) REFERENCES attraction_name(mrt)
 );
 
+
+
+
+
+
+
+
+
+
+-----------錯誤紀錄
 
 --搜尋頁面
 SELECT
@@ -100,3 +109,12 @@ FROM (
 
 ALTER TABLE api_page_keyword
 MODIFY COLUMN nextPage BIGINT;
+
+
+ALTER TABLE attraction_name
+ADD COLUMN nextPage BIGINT;
+
+UPDATE attraction_name
+SET nextPage = (id_name - 1) DIV 12 + 1;
+
+CREATE INDEX idx_nextPage ON attraction_name (nextPage);
