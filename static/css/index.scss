@@ -14,6 +14,11 @@
         @content;
     }
 }
+@mixin screen360 {
+    @media (max-width: 360px) {
+        @content;
+    }
+}
 
 body {
     margin: 54px 0 0;
@@ -43,6 +48,9 @@ body {
         @include screen1200() {
             width: calc(100% - 135px);
         }
+        @include screen600() {
+            width: calc(100% - 25px);
+        }
         div.nav_home {
             cursor: pointer;
             font-size: 30px;
@@ -68,6 +76,9 @@ body {
                 font-weight: 500;
                 line-height: 13.3px;
                 font-family: "Noto Sans TC";
+                @include screen360() {
+                    padding: 5px;
+                }
             }
         }
     }

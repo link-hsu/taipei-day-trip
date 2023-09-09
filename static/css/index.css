@@ -36,6 +36,11 @@ body {
     width: calc(100% - 135px);
   }
 }
+@media (max-width: 600px) {
+  .nav div.nav_wrap {
+    width: calc(100% - 25px);
+  }
+}
 .nav div.nav_wrap div.nav_home {
   cursor: pointer;
   font-size: 30px;
@@ -64,6 +69,11 @@ body {
   font-weight: 500;
   line-height: 13.3px;
   font-family: "Noto Sans TC";
+}
+@media (max-width: 360px) {
+  .nav div.nav_wrap div.nav_menu button.nav_button {
+    padding: 5px;
+  }
 }
 
 div.main_page {
