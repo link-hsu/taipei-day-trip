@@ -354,6 +354,8 @@ main .sectionPicture .pictureRight .orderDirect .orderBtn:hover {
 main hr {
   max-width: 1200px;
   margin: 0 auto;
+  height: 1px;
+  border-top: 1px solid #e8e8e8;
 }
 @media (max-width: 1250px) {
   main hr {
@@ -369,8 +371,6 @@ main hr {
   main hr {
     margin: 0 auto;
     margin-top: 400px;
-    height: 1px;
-    border-top: 1px solid #e8e8e8;
     width: 100%;
   }
 }
