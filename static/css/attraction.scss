@@ -102,70 +102,6 @@
     }
 }
 
-nav {
-    width: 100%;
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    div {
-        width: 1200px;
-        height: 54px;
-        margin: 0 auto;
-        display: flex;
-        background-color: #ffffff;
-        @include screen1250 {
-            width: 90%;
-        }
-        @include screen1000 {
-            width: 85%;
-        }
-        @include screen500 {
-            width: 100%;
-            padding-left: 5px;
-            padding-right: 5px;
-        }
-
-        div.leftBar {
-            width: 50%;
-            font-family: "Noto Sans TC";
-            font-style: normal;
-            font-weight: 700;
-            font-size: 30px;
-            color: #448899;
-            align-items: center; /* 垂直置中 */
-            @include screen750() {
-                font-size: 25px;
-            }
-            @include screen360() {
-                margin-left: 6px;
-            }
-        }
-        div.rightBar {
-            width: 50%;
-            display: flex;
-            justify-content: right;
-            align-items: center; /* 垂直置中 */
-            p {
-                margin-left: 10px;
-                margin-right: 10px;
-                font-size: 16px;
-                color: #666666;
-                @include screen750() {
-                    font-size: 14px;
-                    margin-left: 5px;
-                    margin-right: 5px;
-                }
-            }
-            .SigninRegister {
-                display: flex;
-            }
-            .SignOut {
-                display: none;
-            }
-        }
-    }
-}
-
 main {
     padding-top: 60px;
     width: 100%;
@@ -184,11 +120,6 @@ main {
         }
         @include screen750() {
             display: block;
-        }
-        @include screen500() {
-            width: 100%;
-        }
-        @include screen360() {
             width: 100%;
         }
 
@@ -201,7 +132,7 @@ main {
 
             @include screen750() {
                 margin: 0px auto;
-                width: 95%;
+                width: 100%;
             }
 
             .imgBackground {
@@ -296,8 +227,9 @@ main {
             color: #666666;
             @include screen750() {
                 margin: 20px auto;
-                width: 95%;
+                width: 100%;
             }
+
             .attractionName {
                 width: 100%;
                 height: 33px;
@@ -305,6 +237,9 @@ main {
                 font-size: 24px;
                 @include screen910() {
                     font-size: 20px;
+                }
+                @include screen750() {
+                    margin-left: 20px;
                 }
             }
             .attractionSort {
@@ -314,6 +249,9 @@ main {
                 font-weight: 700;
                 font-size: 16px;
                 letter-spacing: 1px;
+                @include screen750() {
+                    margin-left: 20px;
+                }
             }
             .orderDirect {
                 width: 100%;
@@ -432,10 +370,9 @@ main {
         @include screen750() {
             margin: 0 auto;
             margin-top: 400px;
-            width: 80%;
-        }
-        @include screen360() {
-            width: 95%;
+            height: 1px;
+            border-top: 1px solid #e8e8e8;
+            width: 100%;
         }
     }
 
