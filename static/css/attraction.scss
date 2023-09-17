@@ -1,0 +1,494 @@
+* {
+    box-sizing: border-box; //reset
+    margin: 0; //reset
+    padding: 0; //reset
+    font-family: "Noto Sans TC"; //網頁字體
+    font-style: normal; //網頁字體
+}
+
+@mixin screen1250 {
+    @media (max-width: 1250px) {
+        @content;
+    }
+}
+
+@mixin screen1000 {
+    @media (max-width: 1000px) {
+        @content;
+    }
+}
+@mixin screen910 {
+    @media (max-width: 910px) {
+        @content;
+    }
+}
+
+@mixin screen750 {
+    @media (max-width: 750px) {
+        @content;
+    }
+}
+
+@mixin screen500 {
+    @media (max-width: 500px) {
+        @content;
+    }
+}
+
+@mixin screen360 {
+    @media (max-width: 360px) {
+        @content;
+    }
+}
+
+.nav {
+    width: 100%;
+    height: 54px;
+    position: fixed;
+    z-index: 500;
+    background-color: white;
+    top: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    div.nav_wrap {
+        position: fixed;
+        top: 0;
+        display: flex;
+        width: 1200px;
+        justify-content: space-between;
+        margin: auto;
+        align-items: center;
+        height: 54px;
+        z-index: 501;
+        @include screen1250() {
+            width: calc(100% - 135px);
+        }
+        @include screen750() {
+            width: calc(100% - 25px);
+        }
+        div.nav_home {
+            cursor: pointer;
+            font-size: 30px;
+            font-weight: 700;
+            color: #448899;
+            width: auto;
+            line-height: 34px;
+            @include screen1250() {
+                margin-left: 10px;
+            }
+        }
+        div.nav_menu {
+            width: auto;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            button.nav_button {
+                padding: 10px;
+                background-color: #fff;
+                border: none;
+                color: #666;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 13.3px;
+                font-family: "Noto Sans TC";
+                @include screen360() {
+                    padding: 5px;
+                }
+            }
+        }
+    }
+}
+
+nav {
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    div {
+        width: 1200px;
+        height: 54px;
+        margin: 0 auto;
+        display: flex;
+        background-color: #ffffff;
+        @include screen1250 {
+            width: 90%;
+        }
+        @include screen1000 {
+            width: 85%;
+        }
+        @include screen500 {
+            width: 100%;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        div.leftBar {
+            width: 50%;
+            font-family: "Noto Sans TC";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 30px;
+            color: #448899;
+            align-items: center; /* 垂直置中 */
+            @include screen750() {
+                font-size: 25px;
+            }
+            @include screen360() {
+                margin-left: 6px;
+            }
+        }
+        div.rightBar {
+            width: 50%;
+            display: flex;
+            justify-content: right;
+            align-items: center; /* 垂直置中 */
+            p {
+                margin-left: 10px;
+                margin-right: 10px;
+                font-size: 16px;
+                color: #666666;
+                @include screen750() {
+                    font-size: 14px;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                }
+            }
+            .SigninRegister {
+                display: flex;
+            }
+            .SignOut {
+                display: none;
+            }
+        }
+    }
+}
+
+main {
+    padding-top: 60px;
+    width: 100%;
+    height: 100%;
+    .sectionPicture {
+        margin: 0 auto;
+        justify-content: center;
+        width: 1200px;
+        height: 480px;
+        display: flex;
+        @include screen1250() {
+            width: 90%;
+        }
+        @include screen1000() {
+            width: 85%;
+        }
+        @include screen750() {
+            display: block;
+        }
+        @include screen500() {
+            width: 100%;
+        }
+        @include screen360() {
+            width: 100%;
+        }
+
+        .pictureLeft {
+            width: 540px;
+            height: 406px;
+            margin-top: 37px;
+            margin-left: 5px;
+            position: relative;
+
+            @include screen750() {
+                margin: 0px auto;
+                width: 95%;
+            }
+
+            .imgBackground {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                object-position: center center;
+                object-fit: cover; /*裁切縮放*/
+            }
+            .carouselBtnBlock {
+                width: 540px;
+                height: 36px;
+                margin-top: 185px;
+                position: absolute;
+                display: flex;
+                align-items: center; /* 垂直置中 */
+                justify-content: space-between;
+                @include screen1250() {
+                    width: 100%;
+                }
+
+                .carouselBtn {
+                    cursor: pointer;
+                    margin: 0 10px;
+                    height: 36px;
+                    width: 36px;
+                    border-radius: 50%;
+                    background-color: white;
+                    opacity: 0.7;
+                    display: flex;
+                    align-items: center; /* 垂直置中 */
+                    justify-content: center;
+                    @include screen1000() {
+                        height: 25px;
+                        width: 25px;
+                    }
+                    img {
+                        opacity: 0.5;
+                        font-size: 20px;
+                        @include screen1000() {
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+                .carouselBtn:hover {
+                    opacity: 0.7;
+                    background-color: rgb(62, 61, 61);
+                    color: white;
+                    border-color: #262525;
+                    border-style: solid;
+                }
+            }
+            .carouselUnderBlock {
+                width: 100%;
+                height: 12px;
+                display: flex;
+                justify-content: center;
+                position: absolute;
+                bottom: 13px;
+                .carouselInturn {
+                    cursor: pointer;
+                    margin: 0 3px;
+                    height: 12px;
+                    width: 12px;
+                    border-radius: 50%;
+                    background-color: white;
+                    opacity: 0.7;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center; /* 垂直置中 */
+                    .carouselInturnshow {
+                        height: 10px;
+                        width: 10px;
+                        border-radius: 50%;
+                        background-color: #262525;
+                        display: none;
+                    }
+                }
+                .carouselInturn:hover {
+                    opacity: 0.5;
+                    background-color: rgb(62, 61, 61);
+                    border-color: #050505;
+                    border-style: solid;
+                }
+            }
+        }
+        .pictureRight {
+            width: 615px;
+            height: 406px;
+            margin-top: 37px;
+            margin-left: 30px;
+            color: #666666;
+            @include screen750() {
+                margin: 20px auto;
+                width: 95%;
+            }
+            .attractionName {
+                width: 100%;
+                height: 33px;
+                font-weight: 700;
+                font-size: 24px;
+                @include screen910() {
+                    font-size: 20px;
+                }
+            }
+            .attractionSort {
+                width: 100%;
+                height: 22px;
+                margin-top: 20px;
+                font-weight: 700;
+                font-size: 16px;
+                letter-spacing: 1px;
+            }
+            .orderDirect {
+                width: 100%;
+                height: 302px;
+                margin-top: 20px;
+                background-color: #e8e8e8;
+
+                .orderTitle {
+                    padding-top: 15px;
+                    margin-left: 20px;
+                    font-weight: 700;
+                    font-size: 16px;
+                }
+                .orderScribe {
+                    margin-left: 20px;
+                    margin-top: 15px;
+                    font-weight: 500;
+                    font-size: 16px;
+                }
+                .orderScribe {
+                    margin-left: 20px;
+                    margin-top: 15px;
+                    font-weight: 500;
+                    font-size: 16px;
+                    @include screen500() {
+                        margin-right: 10px;
+                    }
+                }
+                .dateBlock {
+                    .dateTitle {
+                        margin-left: 20px;
+                        margin-top: 20px;
+                        font-weight: 700;
+                        font-size: 16px;
+                        display: inline-block;
+                        .dateIn {
+                            padding: 5px 10px;
+                        }
+                    }
+                }
+                .timeBlock {
+                    margin-top: 15px;
+                    height: 22px;
+                    display: flex;
+                    align-items: center; /* 垂直置中 */
+                    .timeTitle {
+                        margin-left: 20px;
+                        font-weight: 700;
+                        font-size: 16px;
+                    }
+                    input {
+                        margin-left: 5px;
+                        height: 22px;
+                        width: 22px;
+                        border-radius: 100px;
+                        accent-color: #448899;
+                    }
+                    label {
+                        margin-left: 4px;
+                        font-weight: 500;
+                        font-size: 16px;
+                    }
+                    label + input {
+                        margin-left: 8px;
+                    }
+                }
+                .feeBlock {
+                    display: flex;
+                    margin-top: 15px;
+                    .feeTitle {
+                        margin-left: 20px;
+                        font-weight: 700;
+                        font-size: 16px;
+                    }
+                    .fee {
+                        margin-left: 5px;
+                        font-weight: 500;
+                        font-size: 16px;
+                    }
+                }
+                .orderMessage {
+                    margin-left: 20px;
+                    margin-top: 5px;
+                    font-size: 16px;
+                    font-weight: 700;
+                    display: none;
+                }
+                .orderBtn {
+                    cursor: pointer;
+                    margin-left: 20px;
+                    margin-top: 25px;
+                    padding: 5px 20px;
+                    width: 154px;
+                    height: 36px;
+                    background-color: #448899;
+                    font-size: 19px;
+                    color: white;
+                    border-radius: 5px 5px 5px 5px;
+                }
+                .orderBtn:hover {
+                    opacity: 0.8;
+                    background-color: rgb(62, 61, 61);
+                }
+            }
+        }
+    }
+    hr {
+        max-width: 1200px;
+        margin: 0 auto;
+        @include screen1250() {
+            width: 90%;
+        }
+        @include screen1000() {
+            width: 85%;
+        }
+        @include screen750() {
+            margin: 0 auto;
+            margin-top: 400px;
+            width: 80%;
+        }
+        @include screen360() {
+            width: 95%;
+        }
+    }
+
+    .sectioncontain {
+        width: 100%;
+        color: #666666;
+        p {
+            width: 1180px;
+            margin: 0 auto;
+            letter-spacing: 1px;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 23px;
+            // border:solid 1px #666666;
+            @include screen1250() {
+                width: 90%;
+            }
+            @include screen1000() {
+                width: 85%;
+            }
+        }
+
+        .describe {
+            letter-spacing: 1px;
+            margin-top: 50px;
+        }
+        .addressTitle {
+            letter-spacing: 1px;
+            height: 32px;
+            line-height: 32px;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+        .transportTitle {
+            letter-spacing: 1px;
+            height: 32px;
+            line-height: 32px;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+    }
+}
+
+.footer {
+    width: 100%;
+    height: 104px;
+    margin-top: 40px;
+    background-color: #757575;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+}

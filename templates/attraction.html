@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../static/css/attraction.css" />
+        <title>Taipei one day trip</title>
+    </head>
+    <body class="body">
+        <div class="nav">
+            <div class="nav_wrap">
+                <div class="nav_home">台北一日遊</div>
+                <div class="nav_menu">
+                    <button class="nav_button">預定行程</button>
+                    <button class="nav_button">登入/註冊</button>
+                </div>
+            </div>
+        </div>
+        <main>
+            <section class="sectionPicture">
+                <div class="pictureLeft">
+                    <img class="imgBackground" />
+                    <div class="carouselBtnBlock">
+                        <div class="carouselBtn carouselBtnleft">
+                            <img
+                                src="../static/image/prev_img_btn.png"
+                                alt="previous picture"
+                                class="pre_btn"
+                            />
+                        </div>
+                        <div class="carouselBtn carouselBtnright">
+                            <img
+                                src="../static/image/next_img_btn.png"
+                                alt="next picture"
+                                class="next_btn"
+                            />
+                        </div>
+                    </div>
+                    <div class="carouselUnderBlock"></div>
+                </div>
+                <div class="pictureRight">
+                    <p class="attractionName">平安鐘</p>
+                    <p class="attractionSort">公共藝術at忠孝復興</p>
+                    <div class="orderDirect">
+                        <p class="orderTitle">訂購導覽行程</p>
+                        <p class="orderScribe">
+                            以此景點為中心的一日行程，帶你探索城市角落故事
+                        </p>
+
+                        <div class="dateBlock">
+                            <label class="dateTitle"
+                                >選擇日期：
+                                <input
+                                    class="dateIn"
+                                    type="date"
+                                    id="start"
+                                    name="trip-start"
+                                    min="2022-11-28"
+                                    max="2099-12-31"
+                                    style="cursor: pointer"
+                                    placeholder="yyyy/mm/dd"
+                                />
+                                <!-- onfocus="(this.type='date')" -->
+                            </label>
+                        </div>
+
+                        <div class="timeBlock">
+                            <label for="" class="timeTitle">選擇時間：</label>
+                            <input
+                                id="morning"
+                                type="radio"
+                                name="day"
+                                class="Btnmorning"
+                                checked="checked"
+                                style="cursor: pointer"
+                            />
+                            <label>上半天</label>
+                            <input
+                                id="afternoon"
+                                type="radio"
+                                name="day"
+                                class="Btnnoon"
+                                style="cursor: pointer"
+                            />
+                            <label>下半天</label>
+                        </div>
+
+                        <div class="feeBlock">
+                            <div class="feeTitle">導覽費用：</div>
+                            <div class="fee">新台幣 2000 元</div>
+                        </div>
+                        <div class="orderMessage">預約成功</div>
+                        <div class="orderBtn">開始預約行程</div>
+                    </div>
+                </div>
+            </section>
+
+            <hr />
+
+            <section class="sectioncontain">
+                <p class="describe"></p>
+                <p class="addressTitle">景點地址：</p>
+                <p class="address"></p>
+                <p class="transportTitle">交通方式：</p>
+                <p class="transport"></p>
+            </section>
+        </main>
+
+        <div class="footer">COPYRIGHT &copy; 2023 台北一日遊</div>
+        <script src="../static/attraction.js"></script>
+    </body>
+</html>
