@@ -42,7 +42,7 @@
 }
 
 .nav {
-    width: 100%;
+    width: 100vw;
     height: 54px;
     position: fixed;
     z-index: 500;
@@ -53,6 +53,7 @@
     justify-content: center;
     align-items: center;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    box-sizing: content-box;
     div.nav_wrap {
         position: fixed;
         top: 0;
@@ -362,7 +363,8 @@ main {
         max-width: 1200px;
         margin: 0 auto;
         height: 1px;
-        border-top: 1px solid #e8e8e8;
+        border: none;
+        background-color: #e8e8e8;
         @include screen1250() {
             width: 90%;
         }

@@ -245,6 +245,10 @@ div.attractions_container {
   }
 }
 
+.attraction_box:hover {
+  cursor: pointer;
+}
+
 .attraction_box img {
   display: block;
   -o-object-fit: cover;
