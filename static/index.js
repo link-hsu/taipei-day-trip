@@ -1,11 +1,13 @@
-let attractions_container = document.querySelector(".attractions_container");
-let searchBtn = document.querySelector(".search_bar_button");
-let searchInput = document.querySelector(".search_bar_input");
-let leftArrow = document.querySelector(".search_list_left_arrow");
-let rightArrow = document.querySelector(".search_list_right_arrow");
-let container = document.querySelector(".container");
+const container = document.querySelector(".container");
+const leftArrow = document.querySelector(".search_list_left_arrow");
+const rightArrow = document.querySelector(".search_list_right_arrow");
 
-// 捲動捷運list
+const searchBtn = document.querySelector(".search_bar_button");
+const searchInput = document.querySelector(".search_bar_input");
+
+const attractions_container = document.querySelector(".attractions_container");
+
+//===== 捲動捷運list
 leftArrow.addEventListener("click", () => {
     container.scrollLeft -= container.clientWidth - 90;
 });
@@ -17,45 +19,44 @@ let nextPage = 0;
 let keyword = "";
 
 const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && nextPage != null) {
-        getAttractionsData(nextPage, keyword);
-        observer.unobserve(entries[0].target);
-    } else if (nextPage == null) {
-        observer.disconnect();
-    }
+    entries.forEach((entry) => {
+        if (entry.isIntersecting && nextPage !== null) {
+            loadAttractions(nextPage, keyword);
+            observer.unobserve(entry.target);
+        } else if (nextPage === null) {
+            observer.disconnect();
+        }
+    });
 });
 
-// 捷運站清單按鈕
+//===== 捷運站清單按鈕
 function searchMrt(btn) {
     searchInput.value = btn.textContent;
     searchBtn.click();
 }
 
-// 取得捷運列表
+//===== 取得捷運列表
 function getMrts() {
     fetch("/api/mrts")
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            for (let i = 0; i < data["data"].length; i++) {
-                if (data["data"][i] != "None") {
+        .then((response) => response.json())
+        .then((data) => {
+            if (data["error"]) {
+                alert(data["error"]);
+            } else {
+                data["data"].forEach((station) => {
                     let mrtButton = document.createElement("button");
                     mrtButton.className = "list_item";
                     mrtButton.setAttribute("onclick", "searchMrt(this)");
-                    mrtButton.textContent = data["data"][i];
+                    mrtButton.textContent = station;
                     container.appendChild(mrtButton);
-                }
+                });
             }
-        })
-        .catch(function (error) {
-            alert(error["message"]);
         });
 }
 
 getMrts();
 
-// 將取得的data渲染到畫面
+//===== 將取得的data渲染到畫面
 function renderAttractions(api) {
     for (i = 0; i < api["data"].length; i++) {
         let attractionBoxDiv = document.createElement("div");
@@ -76,6 +77,7 @@ function renderAttractions(api) {
 
         let catDiv = document.createElement("div");
         catDiv.textContent = api["data"][i]["category"];
+
         attractions_container.appendChild(attractionBoxDiv);
 
         let attractionBoxElem = document.querySelector(
@@ -86,13 +88,20 @@ function renderAttractions(api) {
         attractionBoxElem.appendChild(attractionNameDiv);
         attractionBoxElem.appendChild(attractionDetailDiv);
 
+        let attractionId = api["data"][i]["id"];
+        let redirectUrl = `/attraction/${attractionId}`;
+        attractionBoxElem.onclick = function () {
+            window.location.href = redirectUrl;
+        };
+
         let attractionDetailElem = attractionBoxElem.lastChild;
         attractionDetailElem.appendChild(mrtDiv);
         attractionDetailElem.appendChild(catDiv);
     }
 }
-// 首先取得景點
-function getAttractionsData(page, keyword) {
+
+//===== 取得景點
+function loadAttractions(page, keyword) {
     fetch(
         `/api/attractions?page=${encodeURIComponent(
             page
@@ -100,8 +109,12 @@ function getAttractionsData(page, keyword) {
     )
         .then((response) => response.json())
         .then((data) => {
+            if (data["error"]) {
+                throw new Error(data["message"]);
+            }
+
             nextPage = data["nextPage"];
-            if (data["data"].length == 0) {
+            if (data["data"].length === 0) {
                 attractions_container.textContent = "查無景點";
             } else {
                 // render 及 滾動效果
@@ -111,12 +124,13 @@ function getAttractionsData(page, keyword) {
                 );
             }
         })
-        .catch(function (error) {
+        .catch((error) => {
             alert(error["message"]);
         });
 }
+loadAttractions(nextPage, keyword);
 
-// 點擊搜尋後效果
+//===== 點擊搜尋後效果
 searchBtn.addEventListener("click", function (e) {
     e.preventDefault();
     keyword = searchInput.value;
@@ -124,6 +138,5 @@ searchBtn.addEventListener("click", function (e) {
     while (attractions_container.hasChildNodes()) {
         attractions_container.removeChild(attractions_container.lastChild);
     }
-    getAttractionsData(nextPage, keyword);
+    loadAttractions(nextPage, keyword);
 });
-getAttractionsData(nextPage, keyword);
