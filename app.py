@@ -1,15 +1,18 @@
 from flask import *
-import logging
 from api.attractions import attractions
+from api.user import user
+from api.user import user_auth
 
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
-logging.basicConfig(filename='myapp.log', level=logging.INFO)
+
 
 # attractions route setting
 app.register_blueprint(attractions, url_prefix="/api")
+app.register_blueprint(user, url_prefix="/api")
+app.register_blueprint(user_auth, url_prefix="/api")
 
 
 # Pages

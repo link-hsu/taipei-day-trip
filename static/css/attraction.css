@@ -7,6 +7,184 @@
   font-style: normal;
 }
 
+.filmBackground {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 100;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: none;
+  justify-content: center;
+}
+
+.signinBlock {
+  width: 340px;
+  height: 275px;
+  top: 80px;
+  position: fixed;
+  z-index: 101;
+  display: none;
+  background-color: transparent;
+  overflow: hidden;
+  border-radius: 0 0 6px 6px;
+}
+.signinBlock .signinBackground {
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(270deg, #378 0%, #6ab 100%);
+  border-radius: 6px 6px 0 0;
+}
+.signinBlock .signinClose {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 20px;
+  right: 10px;
+  cursor: pointer;
+}
+.signinBlock .signinContent {
+  width: calc(100% - 30px);
+  text-align: center;
+  height: 235px;
+  background-color: #ffffff;
+  border-radius: 0 0 6px 6px;
+  padding: 15px;
+  box-sizing: content-box;
+}
+.signinBlock .signinContent .signinTitle {
+  height: 27px;
+  color: #666666;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+.signinBlock .signinContent input {
+  box-sizing: border-box;
+  width: 310px;
+  height: 47px;
+  border-radius: 5px;
+  border: 1px Gray solid;
+  font-weight: 600;
+  margin-bottom: 10px;
+  padding: 0 15px;
+}
+.signinBlock .signinContent .signinBtn {
+  cursor: pointer;
+  width: 310px;
+  height: 47px;
+  background-color: #448899;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 47px;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+}
+.signinBlock .signinContent .signinCreateAccount {
+  cursor: pointer;
+  color: #666666;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+.signinBlock .signinContent .signinCreateAccount:hover {
+  color: black;
+}
+.signinBlock .signinContent .signinMessage {
+  display: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: red;
+  text-align: center;
+}
+
+.registerBlock {
+  width: 340px;
+  height: 332px;
+  top: 80px;
+  position: fixed;
+  z-index: 101;
+  display: none;
+  background-color: transparent;
+  overflow: hidden;
+  border-radius: 0 0 6px 6px;
+}
+.registerBlock .registerBackground {
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(270deg, #378 0%, #6ab 100%);
+  border-radius: 6px 6px 0 0;
+}
+.registerBlock .registerClose {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 20px;
+  right: 10px;
+  cursor: pointer;
+}
+.registerBlock .registerContent {
+  width: calc(100% - 30px);
+  text-align: center;
+  height: 302px;
+  background-color: #ffffff;
+  border-radius: 0 0 6px 6px;
+  padding: 15px;
+  box-sizing: content-box;
+}
+.registerBlock .registerContent .registerTitle {
+  height: 27px;
+  color: #666666;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+.registerBlock .registerContent input {
+  box-sizing: border-box;
+  width: 310px;
+  height: 47px;
+  border-radius: 5px;
+  border: 1px Gray solid;
+  font-weight: 600;
+  margin-bottom: 10px;
+  padding: 0 15px;
+}
+.registerBlock .registerContent .registerBtn {
+  cursor: pointer;
+  width: 310px;
+  height: 47px;
+  background-color: #448899;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 47px;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+}
+.registerBlock .registerContent .registerSignInTo {
+  cursor: pointer;
+  color: #666666;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+.registerBlock .registerContent .registerCreateAccount:hover {
+  color: black;
+}
+.registerBlock .registerContent .registerMessage {
+  display: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: red;
+  text-align: center;
+}
+
 .nav {
   width: 100vw;
   height: 54px;
@@ -62,6 +240,7 @@
   align-items: center;
 }
 .nav div.nav_wrap div.nav_menu button.nav_button {
+  cursor: pointer;
   padding: 10px;
   background-color: #fff;
   border: none;
@@ -75,6 +254,9 @@
   .nav div.nav_wrap div.nav_menu button.nav_button {
     padding: 5px;
   }
+}
+.nav div.nav_wrap div.nav_menu button.signout_btn {
+  display: none;
 }
 
 main {
