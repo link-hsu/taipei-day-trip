@@ -7,6 +7,78 @@
         <title>Taipei one day trip</title>
     </head>
     <body class="body">
+        <section class="signInsignOutReserve">
+            <div class="filmBackground">
+                <div class="signinBlock">
+                    <div class="signinBackground"></div>
+                    <img
+                        class="signinClose"
+                        src="../static/image/close.png"
+                        alt="close login block"
+                    />
+                    <div class="signinContent">
+                        <div class="signinTitle">登入會員帳號</div>
+                        <input
+                            type="email"
+                            class="signinEmail"
+                            placeholder="輸入電子信箱"
+                            name=""
+                        />
+                        <input
+                            type="password"
+                            class="signinPassword"
+                            placeholder="輸入密碼"
+                            name=""
+                        />
+                        <div class="signinBtn">登入帳戶</div>
+                        <div class="signinMessage">登入成功</div>
+                        <div class="signinCreateAccount">
+                            還沒有帳戶？點此註冊
+                        </div>
+                    </div>
+                </div>
+                <div class="registerBlock">
+                    <div class="registerBackground"></div>
+                    <img
+                        class="registerClose"
+                        src="../static/image/close.png"
+                        alt="close register block"
+                    />
+                    <div
+                        class="registerContent"
+                        method="POST"
+                        action="/api/user"
+                    >
+                        <div class="registerTitle">註冊會員帳號</div>
+                        <input
+                            type="text"
+                            class="registerName"
+                            name="registerName"
+                            placeholder="輸入姓名"
+                        />
+                        <input
+                            type="email"
+                            class="registerEmail"
+                            name="registerEmail"
+                            placeholder="輸入電子信箱"
+                        />
+                        <input
+                            type="password"
+                            class="registerPassword"
+                            name="registerPassword"
+                            placeholder="輸入密碼"
+                        />
+                        <div class="registerBtn">註冊新帳戶</div>
+                        <div class="registerMessage">
+                            註冊失敗，點此重新註冊
+                        </div>
+                        <div class="registerSignInTo">
+                            已經有帳戶了？點此登入
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div class="nav">
             <div class="nav_wrap">
                 <div class="nav_home">
@@ -16,7 +88,10 @@
                 </div>
                 <div class="nav_menu">
                     <button class="nav_button">預定行程</button>
-                    <button class="nav_button">登入/註冊</button>
+                    <button class="nav_button signin_register_btn">
+                        登入/註冊
+                    </button>
+                    <button class="nav_button signout_btn">登出系統</button>
                 </div>
             </div>
         </div>
@@ -111,6 +186,7 @@
         </main>
 
         <div class="footer">COPYRIGHT &copy; 2023 台北一日遊</div>
+        <script src="../static/user.js"></script>
         <script src="../static/attraction.js"></script>
     </body>
 </html>
