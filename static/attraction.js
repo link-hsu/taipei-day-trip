@@ -151,3 +151,79 @@ function setListenerforEachCarouselInturn() {
         setBlackPoint();
     };
 }
+
+// ====== link to booking page
+const orderBtn = document.querySelector(".orderBtn");
+orderBtn.addEventListener("click", function () {}, false);
+
+function checkAttractionToken() {
+    if (localStorage.getItem("token")) {
+        let url = "/api/user/auth";
+        let token = localStorage.getItem("token");
+        fetch(url, {
+            method: "GET",
+            headers: { authorization: `Bearer ${token}` },
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data["data"] === null) {
+                    const filmBackground =
+                        document.querySelector(".filmBackground");
+                    const signinBlock = document.querySelector(".signinBlock");
+                } else {
+                    bookingData = getDataForBooking();
+                    postBookingDataToBackEnd(bookingData);
+                }
+            });
+    }
+}
+
+function getDataForBooking() {
+    const attractionUrl = window.location.pathname;
+    const attractionId = attractionUrl.replace("/attraction/", "");
+    let attractionPrice = fee.textContent
+        .replaceAll(" ", "")
+        .replace("新台幣", "")
+        .replace("元", "");
+    let time = "";
+    if (attractionPrice == "2000") {
+        time = "morning";
+    } else {
+        time = "afternoon";
+    }
+    bookingData = {
+        attractionId: attractionId,
+        date: dateIn.value,
+        price: attractionPrice,
+        time: time,
+    };
+    return bookingData;
+}
+
+const orderMessage = document.querySelector(".orderMessage");
+function postBookingDataToBackEnd(bookingData) {
+    fetch("/api/booking", {
+        method: "POST",
+        body: JSON.Stringify(bookingData),
+        headers: { "content-type": "application/json" },
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            if (data["ok"] == true) {
+                orderMessage.style.display = "block";
+                orderMessage.textContent = "資料題寫無誤";
+                orderMessage.style.color = "green";
+                orderBtn.style.marginTop = "10px";
+                window.location.href = "/booking";
+            } else {
+                orderMessage.style.display = "block";
+                orderMessage.style.color = "red";
+                orderMessage.textContent = data["message"];
+                orderBtn.style.marginTop = "10px";
+            }
+        });
+}
