@@ -2,6 +2,10 @@ from flask import *
 from api.attractions import attractions
 from api.user import user
 from api.user import user_auth
+from api.booking import booking
+from api.orders import orders
+from api.orders import order_num
+from api.thankyou import thankyou
 
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
@@ -13,6 +17,10 @@ app.config["TEMPLATES_AUTO_RELOAD"]=True
 app.register_blueprint(attractions, url_prefix="/api")
 app.register_blueprint(user, url_prefix="/api")
 app.register_blueprint(user_auth, url_prefix="/api")
+app.register_blueprint(booking, url_prefix="/api")
+app.register_blueprint(orders, url_prefix="/api")
+app.register_blueprint(order_num, url_prefix="/api")
+app.register_blueprint(thankyou)
 
 
 # Pages

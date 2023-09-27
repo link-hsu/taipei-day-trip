@@ -1,7 +1,7 @@
 CREATE DATABASE attraction;
 
 CREATE TABLE attraction_name (
-id_name BIGINT PRIMARY KEY,
+id BIGINT PRIMARY KEY,
 name VARCHAR(255),
 category VARCHAR(255),
 description TEXT,

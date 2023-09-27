@@ -1,10 +1,6 @@
 from flask import *
 from flask import jsonify
 
-import jwt
-jwt_secret_key = "jwt_secret_key"
-jwt_algorithm = "HS256"
-
 from model import register_data_is_empty
 from model import register_email_exist
 from model import register
@@ -64,7 +60,7 @@ def api_user_auth():
         if auth_header:
             try:
                 token = auth_header.split(' ')[1]
-                payload = jwt.decode(token, jwt_secret_key, algorithms=['HS256'])
+                payload = jwt_decode(token)
                 return jsonify({'data':payload})
             except:
                 return jsonify({'data': None})
