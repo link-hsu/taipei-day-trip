@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- <link rel="stylesheet" href="../static/css/" /> -->
+        <link rel="stylesheet" href="../static/css/booking.css" />
         <title>Taipei one day trip</title>
     </head>
     <body class="body">
@@ -97,26 +97,41 @@
         </div>
         <main class="mainBefore">
             <section class="bookingintroduce">
-                <div class="messageBlock"></div>
-                <div class="messageDownBlock">
-                    <img class="imageBlock" />
-                    <div class="attractionIntroduceBlock">
-                        <p class="attractionName">
-                            台北一日遊<i class="attractionNameContent"></i>
-                        </p>
-                        <p class="orderDate">
-                            日期:<i class="orderDateContent"></i>
-                        </p>
-                        <p class="orderTime">
-                            時間:<i class="orderTimeContent"></i>
-                        </p>
-                        <p class="orderFee">
-                            費用: 新台幣<i class="orderFeeContent"></i>
-                        </p>
-                        <p class="attractionAddress">
-                            地點:<i class="attractionAddressContent"></i>
-                        </p>
-                        <div class="trashcan"></div>
+                <div class="introduceContent">
+                    <div class="messageBlock">
+                        <!-- 您好，Yakko，待預定的行程如下: -->
+                    </div>
+                    <div class="messageDownBlock">
+                        <img
+                            src="https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000736.jpg"
+                            class="imageBlock"
+                        />
+                        <div class="attractionIntroduceBlock">
+                            <p class="attractionName">
+                                台北一日遊<i class="attractionNameContent"></i>
+                            </p>
+                            <p class="orderDate">
+                                日期:<i class="orderDateContent">
+                                    <!-- 2021-04-23 -->
+                                </i>
+                            </p>
+                            <p class="orderTime">
+                                時間:<i class="orderTimeContent">
+                                    <!-- 早上9點到下午4點 -->
+                                </i>
+                            </p>
+                            <p class="orderFee">
+                                費用: 新台幣<i class="orderFeeContent">
+                                    <!-- 2000元 -->
+                                </i>
+                            </p>
+                            <p class="attractionAddress">
+                                地點:<i class="orderAddressContent">
+                                    <!-- 臺北市大安區忠孝東路4段 -->
+                                </i>
+                            </p>
+                            <div class="trashcan"></div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -186,14 +201,19 @@
         </main>
 
         <main class="mainAfter">
-            <section class="bookingIntroduce">
-                <div class="messageBlock">您好，Yakko，待預定的行程如下</div>
-                <div class="messageBlock">目前沒有任何待預定的行程</div>
+            <section class="bookingintroduce">
+                <div class="introduceContent">
+                    <div class="messageBlock">
+                        您好，Yakko，待預定的行程如下
+                    </div>
+                    <div class="messageBlock">目前沒有任何待預定的行程</div>
+                </div>
             </section>
         </main>
 
         <div class="footer">COPYRIGHT &copy; 2023 台北一日遊</div>
+        <div class="footerAfter">COPYRIGHT &copy; 2023 台北一日遊</div>
         <script src="../static/user.js"></script>
-        <script src="../static/attraction.js"></script>
+        <script src="../static/booking.js"></script>
     </body>
 </html>

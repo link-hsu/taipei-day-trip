@@ -15,8 +15,11 @@ from model.jwt import jwt_decode
 from model.DealDatabase import booking_data_is_empty
 from model.DealDatabase import booking_people_exist
 from model.DealDatabase import update_booking_data
+from model.DealDatabase import insert_booking_data
 from model.DealDatabase import get_data_for_booking_page
 from model.DealDatabase import delete_data_for_bookin_page
+from model.DealDatabase import booking_register_people_exist
+
 
 # deal_orders
 from model.DealDatabase import order_data_is_empty

@@ -1,0 +1,549 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans TC";
+  font-style: normal;
+}
+
+.filmBackground {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 100;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: none;
+  justify-content: center;
+}
+
+.signinBlock {
+  width: 340px;
+  height: 275px;
+  top: 80px;
+  position: fixed;
+  z-index: 101;
+  display: none;
+  background-color: transparent;
+  overflow: hidden;
+  border-radius: 0 0 6px 6px;
+}
+.signinBlock .signinBackground {
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(270deg, #378 0%, #6ab 100%);
+  border-radius: 6px 6px 0 0;
+}
+.signinBlock .signinClose {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 20px;
+  right: 10px;
+  cursor: pointer;
+}
+.signinBlock .signinContent {
+  width: calc(100% - 30px);
+  text-align: center;
+  height: 235px;
+  background-color: #ffffff;
+  border-radius: 0 0 6px 6px;
+  padding: 15px;
+  box-sizing: content-box;
+}
+.signinBlock .signinContent .signinTitle {
+  height: 27px;
+  color: #666666;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+.signinBlock .signinContent input {
+  box-sizing: border-box;
+  width: 310px;
+  height: 47px;
+  border-radius: 5px;
+  border: 1px Gray solid;
+  font-weight: 600;
+  margin-bottom: 10px;
+  padding: 0 15px;
+}
+.signinBlock .signinContent .signinBtn {
+  cursor: pointer;
+  width: 310px;
+  height: 47px;
+  background-color: #448899;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 47px;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+}
+.signinBlock .signinContent .signinCreateAccount {
+  cursor: pointer;
+  color: #666666;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+.signinBlock .signinContent .signinCreateAccount:hover {
+  color: black;
+}
+.signinBlock .signinContent .signinMessage {
+  display: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: red;
+  text-align: center;
+}
+
+.registerBlock {
+  width: 340px;
+  height: 332px;
+  top: 80px;
+  position: fixed;
+  z-index: 101;
+  display: none;
+  background-color: transparent;
+  overflow: hidden;
+  border-radius: 0 0 6px 6px;
+}
+.registerBlock .registerBackground {
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(270deg, #378 0%, #6ab 100%);
+  border-radius: 6px 6px 0 0;
+}
+.registerBlock .registerClose {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 20px;
+  right: 10px;
+  cursor: pointer;
+}
+.registerBlock .registerContent {
+  width: calc(100% - 30px);
+  text-align: center;
+  height: 302px;
+  background-color: #ffffff;
+  border-radius: 0 0 6px 6px;
+  padding: 15px;
+  box-sizing: content-box;
+}
+.registerBlock .registerContent .registerTitle {
+  height: 27px;
+  color: #666666;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+.registerBlock .registerContent input {
+  box-sizing: border-box;
+  width: 310px;
+  height: 47px;
+  border-radius: 5px;
+  border: 1px Gray solid;
+  font-weight: 600;
+  margin-bottom: 10px;
+  padding: 0 15px;
+}
+.registerBlock .registerContent .registerBtn {
+  cursor: pointer;
+  width: 310px;
+  height: 47px;
+  background-color: #448899;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 47px;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+}
+.registerBlock .registerContent .registerSignInTo {
+  cursor: pointer;
+  color: #666666;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+.registerBlock .registerContent .registerCreateAccount:hover {
+  color: black;
+}
+.registerBlock .registerContent .registerMessage {
+  display: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: red;
+  text-align: center;
+}
+
+.nav {
+  width: 100vw;
+  height: 54px;
+  position: fixed;
+  z-index: 500;
+  background-color: white;
+  top: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  box-sizing: content-box;
+}
+.nav div.nav_wrap {
+  position: fixed;
+  top: 0;
+  display: flex;
+  width: 1200px;
+  justify-content: space-between;
+  margin: auto;
+  align-items: center;
+  height: 54px;
+  z-index: 501;
+}
+@media (max-width: 1250px) {
+  .nav div.nav_wrap {
+    width: calc(100vw - 135px);
+  }
+}
+@media (max-width: 750px) {
+  .nav div.nav_wrap {
+    width: calc(100vw - 25px);
+  }
+}
+.nav div.nav_wrap div.nav_home {
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 700;
+  color: #448899;
+  width: auto;
+  line-height: 34px;
+}
+@media (max-width: 1250px) {
+  .nav div.nav_wrap div.nav_home {
+    margin-left: 10px;
+  }
+}
+.nav div.nav_wrap div.nav_menu {
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+@media (max-width: 360px) {
+  .nav div.nav_wrap div.nav_menu {
+    margin-left: 10px;
+  }
+}
+.nav div.nav_wrap div.nav_menu button.nav_button {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #fff;
+  border: none;
+  color: #666;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 13.3px;
+  font-family: "Noto Sans TC";
+}
+@media (max-width: 360px) {
+  .nav div.nav_wrap div.nav_menu button.nav_button {
+    padding: 5px;
+  }
+}
+.nav div.nav_wrap div.nav_menu button.signout_btn {
+  display: none;
+}
+
+main .bookingintroduce {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+main .bookingintroduce .introduceContent {
+  margin-top: 54px;
+  width: 1000px;
+}
+@media (max-width: 1250px) {
+  main .bookingintroduce .introduceContent {
+    width: 90%;
+  }
+}
+main .bookingintroduce .introduceContent .messageBlock {
+  margin-top: 40px;
+  height: 27px;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 27px;
+  color: #666666;
+}
+main .bookingintroduce .introduceContent .messageDownBlock {
+  height: 200px;
+  width: 980px;
+  margin-top: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  position: relative;
+}
+@media (max-width: 1250px) {
+  main .bookingintroduce .introduceContent .messageDownBlock {
+    width: 90%;
+  }
+}
+@media (max-width: 750px) {
+  main .bookingintroduce .introduceContent .messageDownBlock {
+    width: 90%;
+    height: 395px;
+    display: block;
+  }
+}
+main .bookingintroduce .introduceContent .messageDownBlock .imageBlock {
+  width: 266px;
+  height: 200px;
+  display: flex;
+  margin-top: 5px;
+  -o-object-position: center center;
+     object-position: center center;
+  -o-object-fit: cover;
+     object-fit: cover; /*裁切縮放*/
+}
+@media (max-width: 750px) {
+  main .bookingintroduce .introduceContent .messageDownBlock .imageBlock {
+    width: 100%;
+    display: block;
+  }
+}
+main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock {
+  margin-left: 30px;
+}
+@media (max-width: 750px) {
+  main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock {
+    margin-left: 0px;
+    height: 190px;
+  }
+}
+main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock p {
+  color: #666666;
+  font-weight: 700;
+  font-size: 16px;
+}
+main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock i {
+  margin-left: 5px;
+}
+main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .attractionName {
+  margin-top: 5px;
+  color: #448899;
+}
+main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .orderDate {
+  margin-top: 20px;
+}
+main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .orderDate i {
+  font-weight: 500;
+}
+main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .orderTime {
+  margin-top: 10px;
+}
+main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .orderTime i {
+  font-weight: 500;
+}
+main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .orderFee {
+  margin-top: 10px;
+}
+main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .orderFee i {
+  font-weight: 500;
+}
+main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .attractionAddress {
+  margin-top: 10px;
+}
+main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .attractionAddress i {
+  font-weight: 500;
+}
+main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .trashcan {
+  cursor: pointer;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  bottom: 190px;
+  right: 0px;
+  background-image: url("../image/icon_delete.png");
+  background-repeat: no-repeat;
+  border: 0;
+}
+@media (max-width: 750px) {
+  main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .trashcan {
+    bottom: 0px;
+  }
+}
+main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .trashcan:hover {
+  opacity: 0.6;
+}
+main hr {
+  margin-top: 40px;
+  max-width: 1200px;
+  height: 1px;
+  border: none;
+  background-color: #e8e8e8;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (max-width: 1250px) {
+  main hr {
+    width: 90%;
+  }
+}
+main .bookingConnection {
+  margin-top: 40px;
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 1250px) {
+  main .bookingConnection {
+    width: 90%;
+  }
+}
+main .bookingConnection div {
+  color: #666666;
+}
+main .bookingConnection p {
+  color: #666666;
+  height: 38px;
+  line-height: 38px;
+  margin-bottom: 15px;
+}
+main .bookingConnection p input {
+  height: 38px;
+  width: 200px;
+  padding: 10px;
+  border: 2px #e8e8e8 solid;
+  border-radius: 5px;
+}
+main .bookingConnection .connectionTitle {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+main .bookingConnection .connectionNotice {
+  font-weight: 700;
+}
+main .bookingConnection .bookingConnectionErrorMessage {
+  font-weight: 1000;
+  color: red;
+  display: none;
+}
+main .bookingPay {
+  margin-top: 40px;
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 1250px) {
+  main .bookingPay {
+    width: 90%;
+  }
+}
+main .bookingPay div {
+  color: #666666;
+}
+main .bookingPay p {
+  color: #666666;
+  height: 38px;
+  line-height: 38px;
+  margin-bottom: 15px;
+}
+main .bookingPay p input {
+  height: 38px;
+  width: 200px;
+  padding: 10px;
+  border: 2px #e8e8e8 solid;
+  border-radius: 5px;
+}
+main .bookingPay .payTitle {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+main .bookingPay .bar {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+main .bookingPay .bar .tpfield {
+  height: 38px;
+  width: 200px;
+  border: 2px #e8e8e8 solid;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+main .bookingConfirm {
+  margin-top: 40px;
+  width: 980px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 1250px) {
+  main .bookingConfirm {
+    width: 90%;
+  }
+}
+main .bookingConfirm p {
+  color: #666666;
+  height: 38px;
+  line-height: 38px;
+  text-align: right;
+  font-weight: 700;
+  font-size: 16px;
+}
+main .bookingConfirm button {
+  width: 173px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #489;
+  border-radius: 5px;
+  font-size: 19px;
+  float: right;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.footer {
+  width: 100%;
+  height: 104px;
+  margin-top: 40px;
+  background-color: #757575;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.footerAfter {
+  display: none;
+  margin-top: 40px;
+  box-sizing: content-box;
+  width: 100%;
+  height: 80vh;
+  padding: 40px 0;
+  background: #757575;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 14px;
+}/*# sourceMappingURL=booking.css.map */

@@ -4,6 +4,16 @@ from flask import *
 import mysql.connector
 import re
 
+def filter_imagelink(file):    
+    def is_imagelink(link):
+        return link.lower().endswith((".png", ".jpg"))
+    images = file.split("https://")
+    images = ["https://" + image for image in images if is_imagelink(image)]    
+    return images
+
+
+
+
 def get_con():
     con = mysql.connector.connect(
         user="root",
@@ -107,6 +117,8 @@ def check_user_id_in_token_exist(decode):
 def booking_data_is_empty(booking_attraction_id,booking_date,booking_price,booking_time):
     if booking_attraction_id == "" or booking_date == "" or booking_price == "" or booking_time == "":
         return True
+    else:
+        return False
 
 # ====== booking_people_exist
 def booking_people_exist(person_id):
@@ -119,40 +131,94 @@ def booking_people_exist(person_id):
         myresult_check = cursor.fetchone()
         if myresult_check != None:
             return myresult_check
+        else:
+            return False
     except:
         print("error for booking_people_exist()")
     finally:
         cursor.close()
         con.close()
 
+# ====== booking_register_people_exist
+def booking_register_people_exist(person_id):
+    try:
+        con = get_con()
+        cursor = con.cursor(dictionary=True)
+        sql_check = "SELECT * FROM accounts WHERE id_people = %s"
+        adr_check = (person_id,)
+        cursor.execute(sql_check, adr_check)
+        myresult_checkEmail = cursor.fetchone()
+        if myresult_checkEmail != None:
+            return True
+        else:
+            return False
+    except:
+        print("error for Database register_email_exist()")
+    finally:
+        cursor.close()
+        con.close()
+
+
+
+
+
+
 # ====== update_booking_data
 def update_booking_data(booking_attraction_id, booking_date, booking_price, booking_time, person_id):
     try:
         con = get_con()
         cursor = con.cursor(dictionary = True)
-        sql_update = "UPDATE reservationflash SET attractionId = %s, date = %s, price = %s, time = %s, person_id = %s"
-        val_update = (booking_attraction_id, booking_date, booking_price, booking_time, person_id)
+        print("update_booking_data() line 147")
+        print("booking_attraction_id:", type(booking_attraction_id))
+        print("booking_date:",type(booking_date))
+        print("booking_price:",type(booking_price))
+        print("booking_time:",type(booking_time))
+        print("person_id:", type(person_id))
+
+        sql_update="UPDATE reservationflash SET attractionId=%s,date=%s,price=%s,time=%s WHERE personId=%s"
+        val_update=(booking_attraction_id,booking_date,booking_price,booking_time,person_id)
+        print()
         cursor.execute(sql_update, val_update)
         con.commit()
-    except:
-        print("error for update_booking_data()") 
+        
+    except Exception as e:
+        print("line 152 error for update_booking_data()", e) 
     finally:
         cursor.close()
         con.close()
 
+
+# ====== insert_booking_data
+def insert_booking_data(booking_attraction_id,booking_date,booking_price,booking_time,person_id):
+    try:
+        con = get_con()
+        cursor = con.cursor(dictionary = True)
+        sql_deposit="INSERT INTO reservationflash(attractionId,date,price,time,personId) VALUES(%s,%s,%s,%s,%s)"
+        val_deposit=(booking_attraction_id,booking_date,booking_price,booking_time,person_id)
+        cursor.execute(sql_deposit,val_deposit)
+        con.commit()
+    except Exception as e:
+        print("DealDatabase insert_booking_data()發生問題", e)
+    finally:
+        cursor.close()
+        con.close()
+
+
 # ====== get_data_for_booking_page
-def get_data_for_booking_page(username, person_id):
+def get_data_for_booking_page(person_id):
     try:
         con = get_con()
         cursor = con.cursor(dictionary=True)
-        sql = "SELECT attraction_name.id, attraction_name.name, attraction_name.address, attraction_name.images, reservationflash.date, reservationflash.time, reservationflash.price FROM attraction_name INNER JOIN reservationflash ON reservationflash.personId=%s and attraction_name.id = reservationflash.attractionId"
+        sql = "SELECT attraction_name.id, attraction_name.name, attraction_name.address, attraction_name.images, reservationflash.date, reservationflash.time, reservationflash.price, reservationflash.id FROM attraction_name INNER JOIN reservationflash ON reservationflash.personId=%s and attraction_name.id = reservationflash.attractionId ORDER BY reservationflash.id DESC LIMIT 1"
         val = (person_id, )
         cursor.execute(sql, val)
         myresult = cursor.fetchone()
         
+        print("get_data_for_booking_page: ", myresult)
         if myresult == None:
-            return ({"username": username, "data": None})
-        img = myresult["images"].split(" ")
+            return ({"error": True, "message": "No matching data"})
+        img = filter_imagelink(myresult["images"])
+        # img = myresult["images"].split(" ")
         data_for_booking_page = (
             {
                 "data":{
@@ -165,27 +231,32 @@ def get_data_for_booking_page(username, person_id):
                     "date": myresult["date"],
                     "time": myresult["time"],
                     "price": myresult["price"],
-                }, "username": username
+                },
             })
+        print("data_for_booking_page: ", data_for_booking_page)
         return (data_for_booking_page)
-    except:
-        print("error for get_data_for_booking_page()")
+    except Exception as e:
+        print("error for get_data_for_booking_page()", e)
         return ({"error": True, "message": "伺服器內部問題"})
     finally:
         cursor.close()
         con.close()
 
 # ====== delete_data_for_booking_page
-def delete_data_for_bookin_page(attraction_id, person_id):
+def delete_data_for_bookin_page(attractio_id,person_id):
     try:
         con = get_con()
         cursor = con.cursor(dictionary=True)
-        sql = "DELETE FROM reservationflash WEHRE attractionId = %s AND personId = %s"
-        val = (attraction_id, person_id)
+        sql = "DELETE FROM reservationflash WHERE attractionId = %s and personId = %s"
+        val = (attractio_id,person_id)
+        print("attraction_id: ", attractio_id)
+        print("attraction_id: ", type(attractio_id))
+        print("person_id: ", type(person_id))
+        print("ready to delete")
         cursor.execute(sql, val)
         con.commit()
-    except:
-        print("error for delete_data_for_bookin_page")
+    except Exception as e:
+        print("error for delete_data_for_bookin_page", e)
     finally:
         cursor.close()
         con.close()
@@ -290,7 +361,7 @@ def delete_reservation_flash_by_person_id(person_id):
         cursor.execute(sql, val)
         con.commit()
     except Exception as e:
-        print("error for delete_data_for_bookin_page(): ", e)
+        print("delete_reservation_flash_by_person_id", e)
     finally:
         cursor.close()
         con.close()

@@ -61,6 +61,6 @@ def api_user_auth():
             try:
                 token = auth_header.split(' ')[1]
                 payload = jwt_decode(token)
-                return jsonify({'data':payload})
+                return jsonify(payload)
             except:
                 return jsonify({'data': None})
