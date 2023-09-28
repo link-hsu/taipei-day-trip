@@ -228,7 +228,7 @@ function pushSigninDataToBackEnd() {
             localStorage.setItem("token", data.token);
             responseFromBackEnd = data;
             dealSigninResponseFromBackEnd();
-            checkUserToken();
+            checkToken();
         });
 }
 
@@ -254,33 +254,33 @@ window.addEventListener("load", function () {
     checkToken();
 });
 
-function checkUserToken() {
-    if (localStorage.getItem("token")) {
-        let url = "/api/user/auth";
-        let token = localStorage.getItem("token");
-        fetch(url, {
-            method: "GET",
-            headers: { authorization: `Bearer ${token}` },
-        })
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                if (data["data"] != null) {
-                    signin_register_btn.style.display = "none";
-                    signout_btn.style.display = "block";
-                    let url = "/booking";
-                    window.location.href = url;
-                } else {
-                    signout();
-                    return false;
-                }
-            });
-    } else {
-        signout();
-        return false;
-    }
-}
+// function checkUserToken() {
+//     if (localStorage.getItem("token")) {
+//         let url = "/api/user/auth";
+//         let token = localStorage.getItem("token");
+//         fetch(url, {
+//             method: "GET",
+//             headers: { authorization: `Bearer ${token}` },
+//         })
+//             .then(function (response) {
+//                 return response.json();
+//             })
+//             .then(function (data) {
+//                 if (data["data"] != null) {
+//                     signin_register_btn.style.display = "none";
+//                     signout_btn.style.display = "block";
+//                     let url = "/booking";
+//                     window.location.href = url;
+//                 } else {
+//                     signout();
+//                     return false;
+//                 }
+//             });
+//     } else {
+//         signout();
+//         return false;
+//     }
+// }
 
 function checkToken() {
     if (localStorage.getItem("token")) {
