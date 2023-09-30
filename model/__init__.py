@@ -10,3 +10,26 @@ from model.DealDatabase import check_user_id_in_token_exist
 
 from model.jwt import jwt_encode
 from model.jwt import jwt_decode
+
+# booking
+from model.DealDatabase import booking_data_is_empty
+from model.DealDatabase import booking_people_exist
+from model.DealDatabase import update_booking_data
+from model.DealDatabase import insert_booking_data
+from model.DealDatabase import get_data_for_booking_page
+from model.DealDatabase import delete_data_for_bookin_page
+from model.DealDatabase import booking_register_people_exist
+
+
+# deal_orders
+from model.DealDatabase import order_data_is_empty
+from model.DealDatabase import order_reservation_exist
+from model.DealDatabase import write_historical_order
+from model.DealDatabase import write_transaction_record_in_historical_order
+from model.DealDatabase import delete_reservation_flash_by_person_id
+from model.DealDatabase import get_transaction_record_in_historical_order
+from model.DealDatabase import get_transaction_record_by_order_number
+from model.DealDatabase import get_transaction_record_by_transaction_number
+
+# tappay
+from model.tappay import pay_by_prime_API

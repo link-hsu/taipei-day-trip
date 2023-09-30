@@ -254,6 +254,34 @@ window.addEventListener("load", function () {
     checkToken();
 });
 
+// function checkUserToken() {
+//     if (localStorage.getItem("token")) {
+//         let url = "/api/user/auth";
+//         let token = localStorage.getItem("token");
+//         fetch(url, {
+//             method: "GET",
+//             headers: { authorization: `Bearer ${token}` },
+//         })
+//             .then(function (response) {
+//                 return response.json();
+//             })
+//             .then(function (data) {
+//                 if (data["data"] != null) {
+//                     signin_register_btn.style.display = "none";
+//                     signout_btn.style.display = "block";
+//                     let url = "/booking";
+//                     window.location.href = url;
+//                 } else {
+//                     signout();
+//                     return false;
+//                 }
+//             });
+//     } else {
+//         signout();
+//         return false;
+//     }
+// }
+
 function checkToken() {
     if (localStorage.getItem("token")) {
         let url = "/api/user/auth";
@@ -269,13 +297,53 @@ function checkToken() {
                 if (data["data"] != null) {
                     signin_register_btn.style.display = "none";
                     signout_btn.style.display = "block";
+                    return data;
+                } else {
+                    signout();
+                    return false;
                 }
             });
     } else {
         signout();
+        return false;
     }
 }
 
+// ====== async_checkToken
+
+function async_checkToken() {
+    return new Promise((resolve, reject) => {
+        if (localStorage.getItem("token")) {
+            let url = "/api/user/auth";
+            let token = localStorage.getItem("token");
+            fetch(url, {
+                method: "GET",
+                headers: { authorization: `Bearer ${token}` },
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    if (data["data"] != null) {
+                        signin_register_btn.style.display = "none";
+                        signout_btn.style.display = "block";
+                        resolve(data);
+                    } else {
+                        signout();
+                        resolve(false);
+                    }
+                })
+                .catch(function (error) {
+                    reject(error);
+                });
+        } else {
+            signout();
+            resolve(false);
+        }
+    });
+}
+
+// ====== signout
 function signout() {
     localStorage.removeItem("token");
     signin_register_btn.style.display = "block";
@@ -285,4 +353,36 @@ function signout() {
 signout_btn.addEventListener("click", function () {
     signout();
     modalClose();
+    let url = "/";
+    window.location.href = url;
+});
+
+// ====== booking
+const goToBooking = document.querySelector(".nav_button");
+goToBooking.addEventListener("click", function () {
+    if (localStorage.getItem("token")) {
+        let url = "/api/user/auth";
+        let token = localStorage.getItem("token");
+        fetch(url, {
+            method: "GET",
+            headers: { authorization: `Bearer ${token}` },
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data["data"] != null) {
+                    let url = "/booking";
+                    window.location.href = url;
+                } else {
+                    signout();
+                    filmBackground.style.display = "flex";
+                    signinBlock.style.display = "block";
+                }
+            });
+    } else {
+        signout();
+        filmBackground.style.display = "flex";
+        signinBlock.style.display = "block";
+    }
 });

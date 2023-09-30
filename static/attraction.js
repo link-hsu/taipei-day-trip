@@ -21,14 +21,29 @@ const address = document.querySelector(".address");
 const transport = document.querySelector(".transport");
 
 //===========   set the date of today
+// let Today = new Date();
+// let dateIn = document.querySelector(".dateIn");
+// todayModel =
+//     String(Today.getFullYear()) +
+//     "-" +
+//     String(Today.getMonth() + 1) +
+//     "-" +
+//     String(Today.getDate());
+// dateIn = document.querySelector(".dateIn");
+// dateIn.value = todayModel;
+// dateIn.min = todayModel;
+
+// ====
+// 获取当前日期
 let Today = new Date();
-let dateIn = document.querySelector(".dateIn");
-todayModel =
-    String(Today.getFullYear()) +
-    "-" +
-    String(Today.getMonth() + 1) +
-    "-" +
-    String(Today.getDate());
+// 获取年份、月份和日期并格式化为两位数字
+let year = Today.getFullYear();
+let month = (Today.getMonth() + 1).toString().padStart(2, "0");
+let day = Today.getDate().toString().padStart(2, "0");
+// 拼接成符合 "yyyy-MM-dd" 格式的日期字符串
+let todayModel = `${year}-${month}-${day}`;
+
+// 设置日期输入框的值和最小值
 dateIn = document.querySelector(".dateIn");
 dateIn.value = todayModel;
 dateIn.min = todayModel;
@@ -150,4 +165,97 @@ function setListenerforEachCarouselInturn() {
         carousePosition = Number(event.target.id);
         setBlackPoint();
     };
+}
+
+// ====== link to booking page
+const orderBtn = document.querySelector(".orderBtn");
+orderBtn.addEventListener(
+    "click",
+    function () {
+        checkAttractionToken();
+    },
+    false
+);
+
+function checkAttractionToken() {
+    if (localStorage.getItem("token")) {
+        let url = "/api/user/auth";
+        let token = localStorage.getItem("token");
+        fetch(url, {
+            method: "GET",
+            headers: { authorization: `Bearer ${token}` },
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data["data"] === null) {
+                    opensigninModal();
+                } else {
+                    bookingData = getDataForBooking();
+                    postBookingDataToBackEnd(bookingData);
+                }
+            });
+    } else {
+        opensigninModal();
+    }
+}
+
+function opensigninModal() {
+    const filmBackground = document.querySelector(".filmBackground");
+    const signinBlock = document.querySelector(".signinBlock");
+    filmBackground.style.display = "flex";
+    signinBlock.style.display = "block";
+}
+
+function getDataForBooking() {
+    const attractionUrl = window.location.pathname;
+    const attractionId = attractionUrl.replace("/attraction/", "");
+    let attractionPrice = fee.textContent
+        .replaceAll(" ", "")
+        .replace("新台幣", "")
+        .replace("元", "");
+    let time = "";
+    if (attractionPrice == "2000") {
+        time = "morning";
+    } else {
+        time = "afternoon";
+    }
+    bookingData = {
+        attractionId: attractionId,
+        date: dateIn.value,
+        price: attractionPrice,
+        time: time,
+    };
+    return bookingData;
+}
+
+const orderMessage = document.querySelector(".orderMessage");
+function postBookingDataToBackEnd(bookingData) {
+    let token = localStorage.getItem("token");
+    fetch("/api/booking", {
+        method: "POST",
+        body: JSON.stringify(bookingData),
+        headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${token}`,
+        },
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            if (data["ok"] == true) {
+                orderMessage.style.display = "block";
+                orderMessage.textContent = "資料填寫無誤";
+                orderMessage.style.color = "green";
+                orderBtn.style.marginTop = "10px";
+                window.location.href = "/booking";
+            } else {
+                orderMessage.style.display = "block";
+                orderMessage.style.color = "red";
+                orderMessage.textContent = data["message"];
+                orderBtn.style.marginTop = "10px";
+            }
+        });
 }

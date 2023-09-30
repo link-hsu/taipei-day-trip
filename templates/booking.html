@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../static/css/booking.css" />
+        <title>Taipei one day trip</title>
+    </head>
+    <body class="body">
+        <section class="signInsignOutReserve">
+            <div class="filmBackground">
+                <div class="signinBlock">
+                    <div class="signinBackground"></div>
+                    <img
+                        class="signinClose"
+                        src="../static/image/close.png"
+                        alt="close login block"
+                    />
+                    <div class="signinContent">
+                        <div class="signinTitle">登入會員帳號</div>
+                        <input
+                            type="email"
+                            class="signinEmail"
+                            placeholder="輸入電子信箱"
+                            name=""
+                        />
+                        <input
+                            type="password"
+                            class="signinPassword"
+                            placeholder="輸入密碼"
+                            name=""
+                        />
+                        <div class="signinBtn">登入帳戶</div>
+                        <div class="signinMessage">登入成功</div>
+                        <div class="signinCreateAccount">
+                            還沒有帳戶？點此註冊
+                        </div>
+                    </div>
+                </div>
+                <div class="registerBlock">
+                    <div class="registerBackground"></div>
+                    <img
+                        class="registerClose"
+                        src="../static/image/close.png"
+                        alt="close register block"
+                    />
+                    <div
+                        class="registerContent"
+                        method="POST"
+                        action="/api/user"
+                    >
+                        <div class="registerTitle">註冊會員帳號</div>
+                        <input
+                            type="text"
+                            class="registerName"
+                            name="registerName"
+                            placeholder="輸入姓名"
+                        />
+                        <input
+                            type="email"
+                            class="registerEmail"
+                            name="registerEmail"
+                            placeholder="輸入電子信箱"
+                        />
+                        <input
+                            type="password"
+                            class="registerPassword"
+                            name="registerPassword"
+                            placeholder="輸入密碼"
+                        />
+                        <div class="registerBtn">註冊新帳戶</div>
+                        <div class="registerMessage">
+                            註冊失敗，點此重新註冊
+                        </div>
+                        <div class="registerSignInTo">
+                            已經有帳戶了？點此登入
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="nav">
+            <div class="nav_wrap">
+                <div class="nav_home">
+                    <a href="/" style="color: inherit; text-decoration: none"
+                        >台北一日遊</a
+                    >
+                </div>
+                <div class="nav_menu">
+                    <button class="nav_button">預定行程</button>
+                    <button class="nav_button signin_register_btn">
+                        登入/註冊
+                    </button>
+                    <button class="nav_button signout_btn">登出系統</button>
+                </div>
+            </div>
+        </div>
+        <main class="mainBefore">
+            <section class="bookingintroduce">
+                <div class="introduceContent">
+                    <div class="messageBlock">
+                        <!-- 您好，Yakko，待預定的行程如下: -->
+                    </div>
+                    <div class="messageDownBlock">
+                        <img
+                            src="https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000736.jpg"
+                            class="imageBlock"
+                        />
+                        <div class="attractionIntroduceBlock">
+                            <p class="attractionName">
+                                台北一日遊<i class="attractionNameContent"></i>
+                            </p>
+                            <p class="orderDate">
+                                日期:<i class="orderDateContent">
+                                    <!-- 2021-04-23 -->
+                                </i>
+                            </p>
+                            <p class="orderTime">
+                                時間:<i class="orderTimeContent">
+                                    <!-- 早上9點到下午4點 -->
+                                </i>
+                            </p>
+                            <p class="orderFee">
+                                費用: 新台幣<i class="orderFeeContent">
+                                    <!-- 2000元 -->
+                                </i>
+                            </p>
+                            <p class="attractionAddress">
+                                地點:<i class="orderAddressContent">
+                                    <!-- 臺北市大安區忠孝東路4段 -->
+                                </i>
+                            </p>
+                            <div class="trashcan"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr />
+
+            <section class="bookingConnection">
+                <div class="connectionTitle">您的聯絡資訊</div>
+                <p>
+                    聯絡姓名:<input
+                        class="bookingName"
+                        type="text"
+                        placeholder="請輸入姓名"
+                    />
+                </p>
+                <p>
+                    聯絡信箱:<input
+                        class="bookingEmail"
+                        type="text"
+                        placeholder="請輸入信箱"
+                    />
+                </p>
+                <p>
+                    手機號碼:<input
+                        class="bookingCellphone"
+                        type="text"
+                        placeholder="請輸入手機號碼"
+                    />
+                </p>
+                <p class="bookingConnectionErrorMessage"></p>
+                <div class="connectionNotice">
+                    請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。
+                </div>
+            </section>
+
+            <hr />
+
+            <section class="bookingPay">
+                <div class="payTitle">信用卡付款資訊</div>
+                <!-- <p>卡片號碼:<input type="text" maxlength="16" placeholder="**** **** **** ****"></p>
+                <p>過期時間:<input type="text" placeholder="MM / YY"></p>
+                <p>驗證密碼:<input type="text" placeholder="CW"></p> -->
+                <div class="bar">
+                    卡片號碼:
+                    <div class="tpfield" id="card-number"></div>
+                </div>
+                <div class="bar">
+                    過期時間:
+                    <div class="tpfield" id="card-expiration-date"></div>
+                </div>
+                <div class="bar">
+                    驗證密碼:
+                    <div class="tpfield" id="card-ccv"></div>
+                </div>
+            </section>
+
+            <hr />
+
+            <section class="bookingConfirm">
+                <p class="bookingTotal">
+                    總價: 新台幣<i class="bookingTotalPrice">2000</i>元
+                </p>
+                <button type="submit" class="bookingConfirmButton">
+                    確認訂購並付款
+                </button>
+            </section>
+        </main>
+
+        <main class="mainAfter">
+            <section class="bookingintroduce">
+                <div class="introduceContent">
+                    <div class="messageBlock">
+                        您好，Yakko，待預定的行程如下
+                    </div>
+                    <div class="messageBlock">目前沒有任何待預定的行程</div>
+                </div>
+            </section>
+        </main>
+
+        <div class="footer">COPYRIGHT &copy; 2023 台北一日遊</div>
+        <div class="footerAfter">COPYRIGHT &copy; 2023 台北一日遊</div>
+        <script src="../static/user.js"></script>
+        <script src="../static/booking.js"></script>
+    </body>
+</html>

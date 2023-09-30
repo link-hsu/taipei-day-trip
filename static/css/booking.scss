@@ -1,0 +1,583 @@
+* {
+    box-sizing: border-box; //reset
+    margin: 0; //reset
+    padding: 0; //reset
+    font-family: "Noto Sans TC"; //網頁字體
+    font-style: normal; //網頁字體
+}
+
+@mixin screen1250 {
+    @media (max-width: 1250px) {
+        @content;
+    }
+}
+
+@mixin screen1000 {
+    @media (max-width: 1000px) {
+        @content;
+    }
+}
+@mixin screen910 {
+    @media (max-width: 910px) {
+        @content;
+    }
+}
+
+@mixin screen750 {
+    @media (max-width: 750px) {
+        @content;
+    }
+}
+
+@mixin screen500 {
+    @media (max-width: 500px) {
+        @content;
+    }
+}
+
+@mixin screen360 {
+    @media (max-width: 360px) {
+        @content;
+    }
+}
+
+.filmBackground {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 100;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    // display: flex;
+    display: none;
+    justify-content: center;
+}
+.signinBlock {
+    width: 340px;
+    height: 275px;
+    // height: 298px;
+    top: 80px;
+    position: fixed;
+    z-index: 101;
+    display: none;
+    background-color: transparent;
+    overflow: hidden;
+    border-radius: 0 0 6px 6px;
+    .signinBackground {
+        width: 100%;
+        height: 10px;
+        background: linear-gradient(270deg, #378 0%, #6ab 100%);
+        border-radius: 6px 6px 0 0;
+    }
+    .signinClose {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: 20px;
+        right: 10px;
+        cursor: pointer;
+    }
+    .signinContent {
+        width: calc(100% - 30px);
+        text-align: center;
+        height: 235px;
+        // height: 258px;
+        background-color: #ffffff;
+        border-radius: 0 0 6px 6px;
+        padding: 15px;
+        box-sizing: content-box;
+        .signinTitle {
+            height: 27px;
+            color: #666666;
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        input {
+            box-sizing: border-box;
+            width: 310px;
+            height: 47px;
+            border-radius: 5px;
+            border: 1px Gray solid;
+            font-weight: 600;
+            margin-bottom: 10px;
+            padding: 0 15px;
+        }
+        .signinBtn {
+            cursor: pointer;
+            width: 310px;
+            height: 47px;
+            background-color: #448899;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 47px;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .signinCreateAccount {
+            cursor: pointer;
+            color: #666666;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+        }
+        .signinCreateAccount:hover {
+            color: black;
+        }
+        .signinMessage {
+            display: none;
+            font-size: 16px;
+            font-weight: 700;
+            color: red;
+            text-align: center;
+        }
+    }
+}
+
+.registerBlock {
+    width: 340px;
+    height: 332px;
+    // height: 355px;
+    top: 80px;
+    position: fixed;
+    z-index: 101;
+    display: none;
+    background-color: transparent;
+    overflow: hidden;
+    border-radius: 0 0 6px 6px;
+    .registerBackground {
+        width: 100%;
+        height: 10px;
+        background: linear-gradient(270deg, #378 0%, #6ab 100%);
+        border-radius: 6px 6px 0 0;
+    }
+    .registerClose {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: 20px;
+        right: 10px;
+        cursor: pointer;
+    }
+    .registerContent {
+        width: calc(100% - 30px);
+        text-align: center;
+        height: 302px;
+        // height: 325px;
+        background-color: #ffffff;
+        border-radius: 0 0 6px 6px;
+        padding: 15px;
+        box-sizing: content-box;
+        .registerTitle {
+            height: 27px;
+            color: #666666;
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        input {
+            box-sizing: border-box;
+            width: 310px;
+            height: 47px;
+            border-radius: 5px;
+            border: 1px Gray solid;
+            font-weight: 600;
+            margin-bottom: 10px;
+            padding: 0 15px;
+        }
+        .registerBtn {
+            cursor: pointer;
+            width: 310px;
+            height: 47px;
+            background-color: #448899;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 47px;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .registerSignInTo {
+            cursor: pointer;
+            color: #666666;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+        }
+        .registerCreateAccount:hover {
+            color: black;
+        }
+        .registerMessage {
+            display: none;
+            font-size: 16px;
+            font-weight: 700;
+            color: red;
+            text-align: center;
+        }
+    }
+}
+
+.nav {
+    width: 100vw;
+    height: 54px;
+    position: fixed;
+    z-index: 500;
+    background-color: white;
+    top: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    box-sizing: content-box;
+    div.nav_wrap {
+        position: fixed;
+        top: 0;
+        display: flex;
+        width: 1200px;
+        justify-content: space-between;
+        margin: auto;
+        align-items: center;
+        height: 54px;
+        z-index: 501;
+        @include screen1250() {
+            width: calc(100vw - 135px);
+        }
+        @include screen750() {
+            width: calc(100vw - 25px);
+        }
+        div.nav_home {
+            cursor: pointer;
+            font-size: 30px;
+            font-weight: 700;
+            color: #448899;
+            width: auto;
+            line-height: 34px;
+            @include screen1250() {
+                margin-left: 10px;
+            }
+        }
+        div.nav_menu {
+            width: auto;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            @include screen360() {
+                margin-left: 10px;
+            }
+            button.nav_button {
+                cursor: pointer;
+                padding: 10px;
+                background-color: #fff;
+                border: none;
+                color: #666;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 13.3px;
+                font-family: "Noto Sans TC";
+                @include screen360() {
+                    padding: 5px;
+                }
+            }
+            button.signout_btn {
+                display: none;
+            }
+        }
+    }
+}
+
+main {
+    .bookingintroduce {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .introduceContent {
+            margin-top: 54px;
+            width: 1000px;
+            @include screen1250 {
+                width: 90%;
+            }
+            .messageBlock {
+                margin-top: 40px;
+                height: 27px;
+                font-weight: 700;
+                font-size: 19px;
+                line-height: 27px;
+                color: #666666;
+            }
+            .messageDownBlock {
+                height: 200px;
+                width: 980px;
+                margin-top: 30px;
+                // margin-left: 10px;
+                margin-right: auto;
+                margin-left: auto;
+                display: flex;
+                position: relative;
+                @include screen1250 {
+                    width: 90%;
+                }
+                @include screen750 {
+                    width: 90%;
+                    height: 395px;
+                    display: block;
+                }
+
+                .imageBlock {
+                    width: 266px;
+                    height: 200px;
+                    display: flex;
+                    margin-top: 5px;
+                    object-position: center center;
+                    object-fit: cover; /*裁切縮放*/
+                    // background-color: rgb(249, 249, 203);
+                    @include screen750 {
+                        width: 100%;
+                        display: block;
+                    }
+                }
+                .attractionIntroduceBlock {
+                    margin-left: 30px;
+                    @include screen750 {
+                        margin-left: 0px;
+                        height: 190px;
+                    }
+
+                    p {
+                        color: #666666;
+                        font-weight: 700;
+                        font-size: 16px;
+                    }
+                    i {
+                        margin-left: 5px;
+                    }
+
+                    .attractionName {
+                        margin-top: 5px;
+                        color: #448899;
+                        // font-weight: 700;
+                    }
+                    .orderDate {
+                        margin-top: 20px;
+                        i {
+                            font-weight: 500;
+                        }
+                    }
+                    .orderTime {
+                        margin-top: 10px;
+                        i {
+                            font-weight: 500;
+                        }
+                    }
+                    .orderFee {
+                        margin-top: 10px;
+                        i {
+                            font-weight: 500;
+                        }
+                    }
+                    .attractionAddress {
+                        margin-top: 10px;
+                        i {
+                            font-weight: 500;
+                        }
+                    }
+                    .trashcan {
+                        cursor: pointer;
+                        position: absolute;
+                        width: 30px;
+                        height: 30px;
+                        bottom: 190px;
+                        right: 0px;
+                        background-image: url("../image/icon_delete.png");
+                        background-repeat: no-repeat;
+                        border: 0;
+                        @include screen750 {
+                            bottom: 0px;
+                        }
+                    }
+                    .trashcan:hover {
+                        opacity: 0.6;
+                    }
+                }
+            }
+        }
+    }
+    hr {
+        margin-top: 40px;
+        max-width: 1200px;
+        height: 1px;
+        border: none;
+        background-color: #e8e8e8;
+        margin-right: auto;
+        margin-left: auto;
+
+        @include screen1250 {
+            width: 90%;
+        }
+    }
+    .bookingConnection {
+        margin-top: 40px;
+        width: 980px;
+        // height: 235px;
+        // background-color:rgb(240, 129, 129);
+        margin-left: auto;
+        margin-right: auto;
+        @include screen1250 {
+            width: 90%;
+        }
+        @include screen750 {
+            // height: 270px;
+        }
+        @include screen500 {
+            // height: 300px;
+        }
+        div {
+            color: #666666;
+        }
+        p {
+            color: #666666;
+            height: 38px;
+            line-height: 38px;
+            margin-bottom: 15px;
+            input {
+                height: 38px;
+                width: 200px;
+                padding: 10px;
+                border: 2px #e8e8e8 solid;
+                border-radius: 5px;
+            }
+        }
+        .connectionTitle {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .connectionNotice {
+            font-weight: 700;
+        }
+        .bookingConnectionErrorMessage {
+            font-weight: 1000;
+            color: red;
+            display: none;
+        }
+    }
+
+    .bookingPay {
+        margin-top: 40px;
+        width: 980px;
+        // height: 200px;
+        // background-color:rgb(234, 117, 117);
+        margin-left: auto;
+        margin-right: auto;
+        @include screen1250 {
+            width: 90%;
+        }
+        div {
+            color: #666666;
+        }
+        p {
+            color: #666666;
+            height: 38px;
+            line-height: 38px;
+            margin-bottom: 15px;
+            input {
+                height: 38px;
+                width: 200px;
+                padding: 10px;
+                border: 2px #e8e8e8 solid;
+                border-radius: 5px;
+            }
+        }
+        .payTitle {
+            font-weight: 700;
+            margin-bottom: 20px;
+            // background-color: #666666;
+        }
+        .bar {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+            .tpfield {
+                height: 38px;
+                width: 200px;
+                border: 2px #e8e8e8 solid;
+                margin: 5px 0;
+                padding: 10px;
+                border-radius: 5px;
+            }
+        }
+    }
+    .bookingConfirm {
+        margin-top: 40px;
+        width: 980px;
+        height: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        // display:block;
+        @include screen1250 {
+            width: 90%;
+        }
+
+        p {
+            color: #666666;
+            height: 38px;
+            line-height: 38px;
+            text-align: right;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        button {
+            width: 173px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #489;
+            border-radius: 5px;
+            font-size: 19px;
+            float: right;
+            // text-align: right;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+    }
+}
+
+.footer {
+    width: 100%;
+    height: 104px;
+    margin-top: 40px;
+    background-color: #757575;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    // display: none;
+}
+
+.footerAfter {
+    display: none;
+    margin-top: 40px;
+    box-sizing: content-box;
+    width: 100%;
+    height: 80vh;
+    padding: 40px 0;
+    background: #757575;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 14px;
+}
