@@ -29,18 +29,24 @@ def api_orders():
         payload = jwt_decode(token)
         person_id = payload["data"]["id"]
         order_data_from_frontEnd = request.get_json()
+        print("order_data_from_frontEnd: ", order_data_from_frontEnd)
+        print("type", type(order_data_from_frontEnd["order"]["trip"]["attraction"]["id"]))
+        print(order_data_from_frontEnd["order"]["trip"]["attraction"]["id"])
         if order_data_is_empty(order_data_from_frontEnd):
             return jsonify({"error": True, "message": "有order資料未填寫"})
         contact_email = order_data_from_frontEnd["order"]["contact"]["email"]
         if not check_email_format(contact_email):
             return jsonify({"error": True, "message": "信箱格式有誤"})
         if not order_reservation_exist(person_id, order_data_from_frontEnd):
+            print("order_reservation_exist function")
+            print("person_id: ", person_id)
             return jsonify({"error": True, "message": "此訂單不在您的預訂清單中"})
         the_last_order_number = write_historical_order(person_id, order_data_from_frontEnd)
         tappay_api_response = pay_by_prime_API(order_data_from_frontEnd)
         write_transaction_record_in_historical_order(the_last_order_number, tappay_api_response)
         delete_reservation_flash_by_person_id(person_id)
         transaction_record = get_transaction_record_in_historical_order(the_last_order_number)
+        print("transaction_record: ", transaction_record)
         return jsonify(transaction_record)
     except Exception as e:
         print("orders伺服器內部錯誤: ", e)
