@@ -129,12 +129,14 @@ def booking_people_exist(person_id):
         adr_check = (person_id,)
         cursor.execute(sql_check, adr_check)
         myresult_check = cursor.fetchone()
+        print("myresult_check", myresult_check)
         if myresult_check != None:
+            print("myresult_check", myresult_check)
             return myresult_check
         else:
             return False
-    except:
-        print("error for booking_people_exist()")
+    except Exception as e:
+        print("error for booking_people_exist()", e)
     finally:
         cursor.close()
         con.close()
@@ -152,8 +154,8 @@ def booking_register_people_exist(person_id):
             return True
         else:
             return False
-    except:
-        print("error for Database register_email_exist()")
+    except Exception as e:
+        print("error for Database register_email_exist(): ", e)
     finally:
         cursor.close()
         con.close()
@@ -209,12 +211,12 @@ def get_data_for_booking_page(person_id):
     try:
         con = get_con()
         cursor = con.cursor(dictionary=True)
-        sql = "SELECT attraction_name.id, attraction_name.name, attraction_name.address, attraction_name.images, reservationflash.date, reservationflash.time, reservationflash.price, reservationflash.id FROM attraction_name INNER JOIN reservationflash ON reservationflash.personId=%s and attraction_name.id = reservationflash.attractionId ORDER BY reservationflash.id DESC LIMIT 1"
+        sql = "SELECT attraction_name.id AS attraction_id, attraction_name.name, attraction_name.address, attraction_name.images, reservationflash.date, reservationflash.time, reservationflash.price, reservationflash.id AS reservationflash_id FROM attraction_name INNER JOIN reservationflash ON reservationflash.personId=%s and attraction_name.id = reservationflash.attractionId ORDER BY reservationflash.id DESC LIMIT 1"
         val = (person_id, )
         cursor.execute(sql, val)
         myresult = cursor.fetchone()
+        print("get_data_for_booking_page original ", myresult)
         
-        print("get_data_for_booking_page: ", myresult)
         if myresult == None:
             return ({"error": True, "message": "No matching data"})
         img = filter_imagelink(myresult["images"])
@@ -223,7 +225,7 @@ def get_data_for_booking_page(person_id):
             {
                 "data":{
                     "attraction":{
-                        "id": myresult["id"],
+                        "id": myresult["attraction_id"],
                         "name": myresult["name"],
                         "address": myresult["address"],
                         "image": img[0],
@@ -292,7 +294,7 @@ def order_reservation_exist(person_id, order_data_from_frontEnd):
         con = get_con()
         cursor = con.cursor(dictionary=True)
         attraction_id = order_data_from_frontEnd["order"]["trip"]["attraction"]["id"]
-        sql = "SELECT * FROM reservationflash WHERE personId = %s AND attractionId = %s"
+        sql = "SELECT * FROM reservationflash WHERE personId = %s AND attractionId = %s ORDER BY id DESC LIMIT 1"
         adr = (person_id, attraction_id)
         cursor.execute(sql, adr)
         myresult = cursor.fetchone()
@@ -337,10 +339,8 @@ def write_transaction_record_in_historical_order(the_last_order_number, tappay_a
     try:
         con = get_con()
         cursor = con.cursor(dictionary=True)
-        now = datetime.now()
-        date_time = now.strftime("%Y%m%d%H%M%S")
-        sql = "UPDATE historical_order SET transaction_time = %s, order_status = %s WHERE order_number = %s"
-        val = (date_time, tappay_api_response["status"], the_last_order_number)
+        sql = "UPDATE historical_order SET order_status = %s WHERE order_number = %s"
+        val = (tappay_api_response["status"], the_last_order_number)
         cursor.execute(sql, val)
         con.commit()
         return True
@@ -371,7 +371,7 @@ def get_transaction_record_in_historical_order(the_last_order_number):
     try:
         con = get_con()
         cursor = con.cursor(dictionary=True)
-        sql = "SELECT transaction_time, order_status FROM historical_order WEHERE order_number = %s;"
+        sql = "SELECT order_date, order_status FROM historical_order WHERE order_number = %s;"
         val = (the_last_order_number, )
         cursor.execute(sql, val)
         transaction_record = cursor.fetchone()
@@ -379,7 +379,7 @@ def get_transaction_record_in_historical_order(the_last_order_number):
         if transaction_record["order_status"] == 0:
             return({
                 "data": {
-                    "number": str(transaction_record["transaction_time"]+str(the_last_order_number)),
+                    "number": str(transaction_record["order_date"])+"-"+str(the_last_order_number),
                     "payment": {
                     "status": transaction_record["order_status"],
                     "message": "付款成功"
@@ -390,8 +390,7 @@ def get_transaction_record_in_historical_order(the_last_order_number):
             return({
                 "error": True,
                 "message": transaction_record["order_status"],
-                # 新增
-                "number": str(transaction_record["transaction_time"] + str(the_last_order_number))
+                # "number": str(transaction_record["transaction_time"] + str(the_last_order_number))
             })
     except Exception as e:
         print("error for get_transaction_record_in_historical_order(): ", e)
@@ -456,11 +455,11 @@ def get_transaction_record_by_transaction_number(transaction_number, person_id):
     try:
         con = get_con()
         cursor = con.cursor(dictionary=True)
-        transaction_time = str(transaction_number)[:14]
-        order_number = str(transaction_number)[14:]
+        order_date = str(transaction_number)[:11]
+        order_number = str(transaction_number)[12:]
 
-        sql = "SELECT * FROM historical_order WHERE order_number = %s AND transaction_time = %s AND order_account_id = %s"
-        val = (order_number, transaction_time, person_id)
+        sql = "SELECT * FROM historical_order WHERE order_number = %s AND order_date = %s AND order_account_id = %s"
+        val = (order_number, order_date, person_id)
         cursor.execute(sql, val)
         total_record = cursor.fetchone()
 
@@ -468,19 +467,20 @@ def get_transaction_record_by_transaction_number(transaction_number, person_id):
         val = (total_record["order_attraction_id"],)
         cursor.execute(sql, val)
         attractions_information = cursor.fetchone()
+        img = filter_imagelink(attractions_information["images"])
 
         if total_record != None:
             return(
 				{
 					"data": {
-						"number": str(total_record["transaction_time"])+str(total_record["order_number"]),
+						"number": str(total_record["transaction_time"])+"-"+str(total_record["order_number"]),
 						"price": total_record["order_price"],
 						"trip": {
 							"attraction": {
 								"id": total_record["order_attraction_id"],
 								"name": attractions_information["name"],
 								"address": attractions_information["address"],
-								"image": attractions_information["images"].split(" ")[0]
+								"image": img[0]
 							},
 							"date": total_record["order_date"],
 							"time": total_record["order_time"]

@@ -5,7 +5,7 @@ from api.user import user_auth
 from api.booking import booking
 from api.orders import orders
 from api.orders import order_num
-from api.thankyou import thankyou
+# from api.thankyou import thankyou
 
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
@@ -20,7 +20,7 @@ app.register_blueprint(user_auth, url_prefix="/api")
 app.register_blueprint(booking, url_prefix="/api")
 app.register_blueprint(orders, url_prefix="/api")
 app.register_blueprint(order_num, url_prefix="/api")
-app.register_blueprint(thankyou)
+# app.register_blueprint(thankyou)
 
 
 # Pages
