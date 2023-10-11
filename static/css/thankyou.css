@@ -254,7 +254,7 @@
   line-height: 13.3px;
   font-family: "Noto Sans TC";
 }
-@media (max-width: 360px) {
+@media (max-width: 500px) {
   .nav div.nav_wrap div.nav_menu button.nav_button {
     padding: 5px;
   }
@@ -290,16 +290,20 @@ main .bookingintroduce .introduceContent .messageBlock {
 }
 main .bookingintroduce .introduceContent #orderId {
   margin-top: 40px;
+  color: black;
 }
 main .bookingintroduce .introduceContent .mt10 {
   margin-top: 10px;
+  color: black;
 }
 
 .footerAfter {
   margin-top: 40px;
   box-sizing: content-box;
   width: 100%;
-  height: 80vh;
+  height: 20vh;
+  position: fixed;
+  bottom: 0px;
   padding: 40px 0;
   background: #757575;
   text-align: center;
