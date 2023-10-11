@@ -263,6 +263,9 @@
 .nav div.nav_wrap div.nav_menu button.signout_btn {
   display: none;
 }
+.nav div.nav_wrap div.nav_menu button.member_btn {
+  display: none;
+}
 
 main .bookingintroduce {
   width: 100%;

@@ -262,6 +262,9 @@
 .nav div.nav_wrap div.nav_menu button.signout_btn {
   display: none;
 }
+.nav div.nav_wrap div.nav_menu button.member_btn {
+  display: none;
+}
 
 main .bookingintroduce {
   width: 100%;
@@ -270,7 +273,7 @@ main .bookingintroduce {
 }
 main .bookingintroduce .introduceContent {
   margin-top: 54px;
-  width: 1000px;
+  width: 800px;
 }
 @media (max-width: 1250px) {
   main .bookingintroduce .introduceContent {
@@ -284,6 +287,12 @@ main .bookingintroduce .introduceContent .messageBlock {
   font-size: 19px;
   line-height: 27px;
   color: #666666;
+}
+main .bookingintroduce .introduceContent #orderId {
+  margin-top: 40px;
+}
+main .bookingintroduce .introduceContent .mt10 {
+  margin-top: 10px;
 }
 
 .footerAfter {
