@@ -1,9 +1,11 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 import jwt
 import datetime
 
-jwt_secret_key = "jwt_secret_key"
-jwt_algorithm = "HS256"
+jwt_secret_key = os.getenv("JWT_SECRET_KEY")
+jwt_algorithm = os.getenv("JWT_ALGORITHM")
 
 def jwt_encode(person_information):
     idPerson = person_information["id_people"]

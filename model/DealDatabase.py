@@ -1,4 +1,6 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 from flask import jsonify
 from flask import *
 import mysql.connector
@@ -12,12 +14,12 @@ def filter_imagelink(file):
     return images
 
 
-
+sql_password = os.getenv("SQL_PASSWORD")
 
 def get_con():
     con = mysql.connector.connect(
         user="root",
-        password="123456789",
+        password=sql_password,
         host="localhost",
         database="attraction",
         auth_plugin="mysql_native_password"
