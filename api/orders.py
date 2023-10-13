@@ -57,7 +57,7 @@ def api_orders():
 def api_order_num(orderNumber):
     print(orderNumber)
     try:
-        print(orderNumber)
+        print("orderNumber: ", orderNumber)
         auth_header = request.headers.get('Authorization')
         token = auth_header.split(' ')[1]
         payload = jwt_decode(token)

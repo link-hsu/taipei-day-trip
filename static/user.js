@@ -24,6 +24,7 @@ const signinMessage = document.querySelector(".signinMessage");
 
 const signin_register_btn = document.querySelector(".signin_register_btn");
 const signout_btn = document.querySelector(".signout_btn");
+const member_btn = document.querySelector(".member_btn");
 
 signinRegisterBtn.addEventListener(
     "click",
@@ -236,6 +237,7 @@ function dealSigninResponseFromBackEnd() {
     if (responseFromBackEnd.token) {
         signin_register_btn.style.display = "none";
         signout_btn.style.display = "block";
+        member_btn.style.display = "block";
         modalClose();
     } else {
         signinMessage.style.display = "block";
@@ -297,6 +299,7 @@ function checkToken() {
                 if (data["data"] != null) {
                     signin_register_btn.style.display = "none";
                     signout_btn.style.display = "block";
+                    member_btn.style.display = "block";
                     return data;
                 } else {
                     signout();
@@ -327,6 +330,7 @@ function async_checkToken() {
                     if (data["data"] != null) {
                         signin_register_btn.style.display = "none";
                         signout_btn.style.display = "block";
+                        member_btn.style.display = "block";
                         resolve(data);
                     } else {
                         signout();
@@ -348,6 +352,7 @@ function signout() {
     localStorage.removeItem("token");
     signin_register_btn.style.display = "block";
     signout_btn.style.display = "none";
+    member_btn.style.display = "none";
 }
 
 signout_btn.addEventListener("click", function () {
@@ -355,6 +360,10 @@ signout_btn.addEventListener("click", function () {
     modalClose();
     let url = "/";
     window.location.href = url;
+});
+
+member_btn.addEventListener("click", function () {
+    window.location.href = "/member";
 });
 
 // ====== booking

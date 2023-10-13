@@ -5,6 +5,7 @@ from api.user import user_auth
 from api.booking import booking
 from api.orders import orders
 from api.orders import order_num
+from api.member import member
 # from api.thankyou import thankyou
 
 app=Flask(__name__)
@@ -20,6 +21,7 @@ app.register_blueprint(user_auth, url_prefix="/api")
 app.register_blueprint(booking, url_prefix="/api")
 app.register_blueprint(orders, url_prefix="/api")
 app.register_blueprint(order_num, url_prefix="/api")
+app.register_blueprint(member, url_prefix="/api")
 # app.register_blueprint(thankyou)
 
 
@@ -36,6 +38,9 @@ def booking():
 @app.route("/thankyou")
 def thankyou():
 	return render_template("thankyou.html")
+@app.route("/member")
+def member():
+	return render_template("member.html")
 
 app.run(host="0.0.0.0", port=3000)
 # app.run(port=3000)

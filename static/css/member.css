@@ -1,4 +1,3 @@
-@charset "UTF-8";
 * {
   box-sizing: border-box;
   margin: 0;
@@ -282,271 +281,59 @@ main .bookingintroduce .introduceContent {
   }
 }
 main .bookingintroduce .introduceContent .messageBlock {
-  margin-top: 40px;
+  margin-top: 20px;
+  text-align: center;
   height: 27px;
   font-weight: 700;
   font-size: 19px;
   line-height: 27px;
   color: #666666;
 }
-main .bookingintroduce .introduceContent .messageDownBlock {
-  height: 200px;
-  width: 980px;
-  margin-top: 30px;
-  margin-right: auto;
-  margin-left: auto;
-  display: flex;
-  position: relative;
-}
-@media (max-width: 1250px) {
-  main .bookingintroduce .introduceContent .messageDownBlock {
-    width: 90%;
-  }
-}
-@media (max-width: 750px) {
-  main .bookingintroduce .introduceContent .messageDownBlock {
-    width: 90%;
-    height: 395px;
-    display: block;
-  }
-}
-main .bookingintroduce .introduceContent .messageDownBlock .imageBlock {
-  width: 266px;
-  height: 200px;
-  display: flex;
-  margin-top: 5px;
-  -o-object-position: center center;
-     object-position: center center;
-  -o-object-fit: cover;
-     object-fit: cover; /*裁切縮放*/
-}
-@media (max-width: 750px) {
-  main .bookingintroduce .introduceContent .messageDownBlock .imageBlock {
-    width: 100%;
-    display: block;
-  }
-}
-main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock {
-  margin-left: 30px;
-}
-@media (max-width: 750px) {
-  main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock {
-    margin-left: 0px;
-    height: 190px;
-  }
-}
-main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock p {
-  color: #666666;
-  font-weight: 700;
-  font-size: 16px;
-}
-main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock i {
-  margin-left: 5px;
-}
-main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .attractionName {
-  margin-top: 5px;
-  color: #448899;
-}
-main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .orderDate {
-  margin-top: 20px;
-}
-main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .orderDate i {
-  font-weight: 500;
-}
-main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .orderTime {
-  margin-top: 10px;
-}
-main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .orderTime i {
-  font-weight: 500;
-}
-main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .orderFee {
-  margin-top: 10px;
-}
-main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .orderFee i {
-  font-weight: 500;
-}
-main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .attractionAddress {
-  margin-top: 10px;
-}
-main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .attractionAddress i {
-  font-weight: 500;
-}
-main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .trashcan {
-  cursor: pointer;
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  bottom: 190px;
-  right: 0px;
-  background-image: url("../image/icon_delete.png");
-  background-repeat: no-repeat;
-  border: 0;
-}
-@media (max-width: 750px) {
-  main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .trashcan {
-    bottom: 0px;
-  }
-}
-main .bookingintroduce .introduceContent .messageDownBlock .attractionIntroduceBlock .trashcan:hover {
-  opacity: 0.6;
-}
-main hr {
-  margin-top: 40px;
-  max-width: 1200px;
-  height: 1px;
-  border: none;
-  background-color: #e8e8e8;
-  margin-right: auto;
-  margin-left: auto;
-}
-@media (max-width: 1250px) {
-  main hr {
-    width: 90%;
-  }
-}
-main .bookingConnection {
-  margin-top: 40px;
-  width: 980px;
-  margin-left: auto;
-  margin-right: auto;
-}
-@media (max-width: 1250px) {
-  main .bookingConnection {
-    width: 90%;
-  }
-}
-main .bookingConnection div {
-  color: #666666;
-}
-main .bookingConnection p {
-  color: #666666;
-  height: 38px;
-  line-height: 38px;
-  margin-bottom: 15px;
-}
-main .bookingConnection p input {
+main .bookingintroduce .introduceContent .messageBlock input {
+  margin: 5px;
   height: 38px;
   width: 200px;
-  padding: 10px;
-  border: 2px #e8e8e8 solid;
-  border-radius: 5px;
-}
-main .bookingConnection .connectionTitle {
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-main .bookingConnection .connectionNotice {
-  font-weight: 700;
-}
-main .bookingConnection .bookingConnectionErrorMessage {
+  font-size: 20px;
   font-weight: 1000;
-  color: red;
-  display: none;
-}
-main .bookingPay {
-  margin-top: 40px;
-  width: 980px;
-  margin-left: auto;
-  margin-right: auto;
-}
-@media (max-width: 1250px) {
-  main .bookingPay {
-    width: 90%;
-  }
-}
-main .bookingPay div {
-  color: #666666;
-}
-main .bookingPay p {
-  color: #666666;
-  height: 38px;
-  line-height: 38px;
-  margin-bottom: 15px;
-}
-main .bookingPay p input {
-  height: 38px;
-  width: 200px;
-  padding: 10px;
-  border: 2px #e8e8e8 solid;
+  padding-left: 10px;
+  border: 2px solid #e8e8e8;
   border-radius: 5px;
 }
-main .bookingPay .payTitle {
-  font-weight: 700;
-  margin-bottom: 20px;
+main .bookingintroduce .introduceContent .memberTitle {
+  font-size: 24px;
 }
-main .bookingPay .bar {
-  display: flex;
-  margin-bottom: 10px;
-  align-items: center;
+main .bookingintroduce .introduceContent .memberMessageTitle {
+  visibility: hidden;
 }
-main .bookingPay .bar .tpfield {
-  height: 38px;
-  width: 200px;
-  border: 2px #e8e8e8 solid;
-  margin: 5px 0;
-  padding: 10px;
-  border-radius: 5px;
-}
-main .bookingConfirm {
-  margin-top: 40px;
-  width: 980px;
-  height: 100px;
-  margin-left: auto;
-  margin-right: auto;
-}
-@media (max-width: 1250px) {
-  main .bookingConfirm {
-    width: 90%;
-  }
-}
-main .bookingConfirm p {
-  color: #666666;
-  height: 38px;
-  line-height: 38px;
-  text-align: right;
-  font-weight: 700;
-  font-size: 16px;
-}
-main .bookingConfirm button {
-  width: 173px;
+main .bookingintroduce .introduceContent .changeInformationBtn {
+  margin: auto;
+  width: 150px;
   height: 36px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: lightgray;
-  border-radius: 5px;
-  font-size: 19px;
-  float: right;
-  color: white;
+  line-height: 36px;
+  font-weight: 400;
+  margin-top: 10px;
   cursor: pointer;
-  border: none;
+  background-color: #448899;
+  color: white;
+  border-radius: 5px;
 }
-
-.footer {
-  width: 100%;
-  height: 104px;
-  margin-top: 40px;
-  background-color: #757575;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
+main .bookingintroduce .introduceContent .changeInformationBtn:hover {
+  background-color: rgba(60, 178, 158, 0.7882352941);
+  font-weight: 500;
+  color: #0c1c24;
 }
 
 .footerAfter {
-  display: none;
   margin-top: 40px;
   box-sizing: content-box;
   width: 100%;
-  height: 80vh;
-  padding: 40px 0;
+  position: fixed;
+  bottom: 0;
+  padding: 60px 0;
   background: #757575;
   text-align: center;
   color: #fff;
   font-size: 16px;
   font-weight: 700;
   line-height: 14px;
-}/*# sourceMappingURL=booking.css.map */
+}/*# sourceMappingURL=member.css.map */

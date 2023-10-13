@@ -1,10 +1,12 @@
-# import os
+import os
+from dotenv import load_dotenv
+load_dotenv()
 import requests
 
 
 
-tappay_partner_key = "partner_aeOyJLAtm1ajJUSUzxfiWlIv2XqmFAuUaR3b7P3Di9excadftSEphuJJ"
-tappay_merchant_id = "popolocroiss_CTBC"
+tappay_partner_key = os.getenv("TAPPAY_PARTNER_KEY")
+tappay_merchant_id = os.getenv("TAPPAY_MERCHANT_ID")
 
 
 

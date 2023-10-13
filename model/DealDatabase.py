@@ -1,7 +1,10 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 from flask import jsonify
 from flask import *
 import mysql.connector
+import mysql.connector.pooling
 import re
 
 def filter_imagelink(file):    
@@ -12,16 +15,37 @@ def filter_imagelink(file):
     return images
 
 
+sql_password = os.getenv("SQL_PASSWORD")
+
+# def get_con():
+#     con = mysql.connector.connect(
+#         user="root",
+#         password=sql_password,
+#         host="localhost",
+#         database="attraction",
+#         auth_plugin="mysql_native_password"
+#         )
+#     return con
+
+
+
+dbconfig={
+	"user":"root",
+	"password":sql_password,
+	"host":"localhost",
+	"database":"attraction",
+}
+
+connection_pool = mysql.connector.pooling.MySQLConnectionPool(
+	pool_name = "wehelp_pool",
+	pool_size = 5,
+	pool_reset_session = True,
+	**dbconfig
+)
 
 
 def get_con():
-    con = mysql.connector.connect(
-        user="root",
-        password="123456789",
-        host="localhost",
-        database="attraction",
-        auth_plugin="mysql_native_password"
-        )
+    con = connection_pool.get_connection()
     return con
 
 
@@ -455,18 +479,23 @@ def get_transaction_record_by_transaction_number(transaction_number, person_id):
     try:
         con = get_con()
         cursor = con.cursor(dictionary=True)
-        order_date = str(transaction_number)[:11]
-        order_number = str(transaction_number)[12:]
-
-        sql = "SELECT * FROM historical_order WHERE order_number = %s AND order_date = %s AND order_account_id = %s"
+        transaction_number = str(transaction_number).replace(" ", "")
+        print("transaction_number: ", transaction_number)
+        order_date = transaction_number[:10]
+        order_number = transaction_number[11:]
+        print("order_date: ", order_date)
+        print("order_number: ", order_number)
+        sql = "SELECT * FROM historical_order WHERE order_number = %s AND order_date = %s AND order_account_id = %s ORDER BY order_number DESC"
         val = (order_number, order_date, person_id)
         cursor.execute(sql, val)
         total_record = cursor.fetchone()
+        print("total_record: ", total_record)
 
         sql = "SELECT * FROM attraction_name WHERE id = %s"
         val = (total_record["order_attraction_id"],)
         cursor.execute(sql, val)
         attractions_information = cursor.fetchone()
+        print("attractions_information: ", attractions_information)
         img = filter_imagelink(attractions_information["images"])
 
         if total_record != None:
@@ -505,6 +534,89 @@ def get_transaction_record_by_transaction_number(transaction_number, person_id):
 
 
 
+# ====== member_page
+# ====== get_account_information_by_person_id
+
+def get_account_information_by_person_id(person_id):
+    try:
+        print("person_id: ", person_id)
+        con = get_con()
+        cursor = con.cursor(dictionary=True)
+        sql_check = "SELECT * FROM accounts WHERE id_people=%s"
+        adr_check = (person_id,)
+        cursor.execute(sql_check,adr_check)
+        myresult = cursor.fetchone()
+        print("myresult get_account_information_by_person_id: ", myresult)
+        return myresult   
+    except Exception as e:
+        print("member_model get_account_information_by_person_id()發生問題: ",e)
+    finally:
+        cursor.close()
+        con.close()
+
+# ====== change_email_is_not_exist
+def change_email_is_not_exist(email):
+    try:
+        con = get_con()
+        cursor = con.cursor(dictionary=True)
+        sql_check = "SELECT * FROM accounts WHERE email=%s"
+        adr_check = (email,)
+        cursor.execute(sql_check,adr_check)
+        myresult=cursor.fetchone()
+        if myresult == None:
+            return True
+    except Exception as e:
+        print("member_model change_email_is_not_exist()發生問題: ",e)
+    finally:
+        cursor.close()
+        con.close()
+
+# ====== update_account_information
+def update_account_information(name,email,password,id_people):
+    try:
+        con = get_con()
+        cursor = con.cursor(dictionary=True)
+        sql = "UPDATE accounts SET name=%s, email=%s, password=%s WHERE id_people=%s"
+        val = (name,email,password,id_people)	
+        cursor.execute(sql,val)
+        con.commit()
+        
+        person_information={
+            "id_people": id_people,
+            "name": name,
+            "email": email
+        }
+        print("成功更新帳戶資料： ", person_information)
+        return person_information 
+
+    except Exception as e:
+        print("member_model update_account_information()發生問題: ",e)
+    finally:
+        cursor.close()
+        con.close()
+
+
+
+
+
+
+# ========================	register	========================
+
+# def register_email_exist(email):
+# 	try:
+# 		connection_object = connection_pool.get_connection()
+# 		mycursor = connection_object.cursor(dictionary=True) # 設定fetchone跟fetchall有搜尋結果時的回傳都為字典形式
+# 		sql_check="SELECT *FROM accounts WHERE email=%s"
+# 		adr_check=(email,)
+# 		mycursor.execute(sql_check,adr_check)
+# 		myresult_checkEmail=mycursor.fetchone()
+# 		if myresult_checkEmail != None:
+# 			return True
+# 	except:
+# 		print("DealDatabase register_email_exist()發生問題")
+# 	finally:
+# 		mycursor.close()
+# 		connection_object.close()
          
 
 
