@@ -39,24 +39,23 @@ def api_member():
             token = auth_header.split(' ')[1]
             payload = jwt_decode(token)
             person_id = payload["data"]["id"]
+            person_origin_token_email = payload["data"]["email"]
 
             newMemberData = request.get_json()
             name = newMemberData["name"]
             email = newMemberData["email"]
             password = newMemberData["password"]
 
-            print("newMemberData: ", newMemberData)
-            print("----")
-
             if register_data_is_empty(name,email,password):
                 return jsonify({"error":True,"message":"更新資料未填寫完整"})
             if not check_email_format(email):
                 return jsonify({"error":True,"message":"信箱格式不符"})
-            if not(change_email_is_not_exist(email)):
+            if not(person_origin_token_email == email) and not(change_email_is_not_exist(email)):
                 return jsonify({"error":True,"message":"信箱重複，請更換"})
             person_information = update_account_information(name, email, password, person_id)
             token = jwt_encode(person_information)
             return jsonify({"token": token})
 
-        except:
+        except Exception as e:
+            print("error is: ", e)
             return jsonify({"error":True,"message":"系統異常，請聯繫客服處理"})

@@ -4,6 +4,7 @@ load_dotenv()
 from flask import jsonify
 from flask import *
 import mysql.connector
+import mysql.connector.pooling
 import re
 
 def filter_imagelink(file):    
@@ -16,14 +17,35 @@ def filter_imagelink(file):
 
 sql_password = os.getenv("SQL_PASSWORD")
 
+# def get_con():
+#     con = mysql.connector.connect(
+#         user="root",
+#         password=sql_password,
+#         host="localhost",
+#         database="attraction",
+#         auth_plugin="mysql_native_password"
+#         )
+#     return con
+
+
+
+dbconfig={
+	"user":"root",
+	"password":sql_password,
+	"host":"localhost",
+	"database":"attraction",
+}
+
+connection_pool = mysql.connector.pooling.MySQLConnectionPool(
+	pool_name = "wehelp_pool",
+	pool_size = 5,
+	pool_reset_session = True,
+	**dbconfig
+)
+
+
 def get_con():
-    con = mysql.connector.connect(
-        user="root",
-        password=sql_password,
-        host="localhost",
-        database="attraction",
-        auth_plugin="mysql_native_password"
-        )
+    con = connection_pool.get_connection()
     return con
 
 
