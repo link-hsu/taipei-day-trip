@@ -1,6 +1,6 @@
 <h1 align="center">Taipei Day Trip 台北一日遊專案 🗺️</h1>
 
-🧭 Taipei Day Trip is an e-commerce website where you can discover tourist attractions in Taipei and book day tours of the sights.
+🧭 Taipei Day Trip is an e-commerce website where you can discover tourist attractions in Taipei and book day tours of the sights with *member system*.
 
 🔗 Website URL: https://trip.abinitio.fun/
 
@@ -31,7 +31,6 @@
   ![shopping_cart_system](readme/image3-shopping_cart_system.gif)
 - RWD
   ![RWD](readme/image4-RWD.gif)
-- Member info
 
 #### Other
 
