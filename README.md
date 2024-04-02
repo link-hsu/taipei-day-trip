@@ -20,17 +20,20 @@
 
 ## Display
 - RWD
-  ![RWD][RWD]
-  [RWD]:./readme/image1-%20rwd.gif
+  ![RWD](https://github.com/link-hsu/taipei-day-trip/blob/master/readme/image1-rwd.gif)
+  [RWD]:./readme/image1-rwd.gif
+- RWD
+  ![][RWD]
+  [RWD]:./readme/image1-rwd.gif
 - Keyward Search for attraction category
-  ![SEARCH][SEARCH]
+  ![][SEARCH]
   [SEARCH]:./readme/image2-search.gif
 - Tappay
-  ![TAPPAY][TAPPAY]
+  ![][TAPPAY]
   [TAPPAY]:./readme/image3-tappay.gif
 - Attraction carousel
-  ![CAROUSEL][CAROUSEL]
+  ![][CAROUSEL]
   [CAROUSEL]:./readme/image4-carousel.gif
 - Member
-  ![MEMBER][MEMBER]
+  ![][MEMBER]
   [MEMBER]:./readme/image5-member_info.gif
