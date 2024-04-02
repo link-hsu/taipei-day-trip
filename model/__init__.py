@@ -31,5 +31,10 @@ from model.DealDatabase import get_transaction_record_in_historical_order
 from model.DealDatabase import get_transaction_record_by_order_number
 from model.DealDatabase import get_transaction_record_by_transaction_number
 
+# deal_member
+from model.DealDatabase import get_account_information_by_person_id
+from model.DealDatabase import change_email_is_not_exist
+from model.DealDatabase import update_account_information
+
 # tappay
 from model.tappay import pay_by_prime_API

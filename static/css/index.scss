@@ -263,11 +263,14 @@ body {
                 font-weight: 500;
                 line-height: 13.3px;
                 font-family: "Noto Sans TC";
-                @include screen360() {
+                @include screen600() {
                     padding: 5px;
                 }
             }
             button.signout_btn {
+                display: none;
+            }
+            button.member_btn {
                 display: none;
             }
         }

@@ -255,12 +255,15 @@
   line-height: 13.3px;
   font-family: "Noto Sans TC";
 }
-@media (max-width: 360px) {
+@media (max-width: 500px) {
   .nav div.nav_wrap div.nav_menu button.nav_button {
     padding: 5px;
   }
 }
 .nav div.nav_wrap div.nav_menu button.signout_btn {
+  display: none;
+}
+.nav div.nav_wrap div.nav_menu button.member_btn {
   display: none;
 }
 
