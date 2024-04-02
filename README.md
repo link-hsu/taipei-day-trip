@@ -21,7 +21,6 @@
 ## Display
 - RWD
   ![RWD](https://github.com/link-hsu/taipei-day-trip/blob/master/readme/image1-rwd.gif)
-  [RWD]:./readme/image1-rwd.gif
 - RWD
   ![][RWD]
   [RWD]:./readme/image1-rwd.gif
