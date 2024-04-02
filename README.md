@@ -1,4 +1,8 @@
-# Taipei Day Trip 台北一日遊專案
+<h1 align="center">Taipei Day Trip 台北一日遊專案 🗺️</h1>
+
+🧭 Taipei Day Trip is an e-commerce website where you can discover tourist attractions in Taipei and book day tours of the sights.
+
+🔗 Website URL: https://trip.abinitio.fun/
 
 ## Tools
 - Front-end
@@ -19,20 +23,22 @@
   - Third-Party Payment System: TapPay
 
 ## Display
+- Infinite Scroll
+  ![infinite_scroll](readme/image1-infinite_scroll.gif)
+- Keyword Search
+  ![keyword_search](readme/image2-keyword_search.gif)
+- Shopping cart
+  ![shopping_cart_system](readme/image3-shopping_cart_system.gif)
 - RWD
-  ![RWD](https://github.com/link-hsu/taipei-day-trip/blob/master/readme/image1-rwd.gif)
-- RWD
-  ![][RWD]
-  [RWD]:./readme/image1-rwd.gif
-- Keyward Search for attraction category
-  ![][SEARCH]
-  [SEARCH]:./readme/image2-search.gif
-- Tappay
-  ![][TAPPAY]
-  [TAPPAY]:./readme/image3-tappay.gif
-- Attraction carousel
-  ![][CAROUSEL]
-  [CAROUSEL]:./readme/image4-carousel.gif
-- Member
-  ![][MEMBER]
-  [MEMBER]:./readme/image5-member_info.gif
+  ![RWD](readme/image4-RWD.gif)
+- Member info
+
+#### Other
+
+- Version Control: Git/Github
+
+## Contact Me
+
+😺 Link Hsu
+
+📧 roccoisgood@gmail.com
