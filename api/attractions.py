@@ -17,9 +17,7 @@ def get_con():
         user="root",
         password="123456789",
         host="localhost",
-        database="attraction",
-        auth_plugin="mysql_native_password"
-        )
+        database="attraction")
     return con
 
 

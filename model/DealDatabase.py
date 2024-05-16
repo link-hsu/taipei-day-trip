@@ -22,9 +22,7 @@ sql_password = os.getenv("SQL_PASSWORD")
 #         user="root",
 #         password=sql_password,
 #         host="localhost",
-#         database="attraction",
-#         auth_plugin="mysql_native_password"
-#         )
+#         database="attraction")
 #     return con
 
 

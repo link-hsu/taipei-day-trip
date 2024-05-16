@@ -187,8 +187,8 @@ function enableBookingConfirmButton() {
 
 // ====== tappay
 TPDirect.setupSDK(
-    137219,
-    "app_RTFSkViFrDFpkJcOOgY6gzdUwHB7P5TKSw1nAEW91XhKBibtjNp951i9JFd5",
+    149909,
+    "app_yhT2q7SIMGghOoRAnHp7t8Q9Kf9mOVxQy9MYk28fxiRZdmrmnM7WiDYcnBuB",
     "sandbox"
 );
 
@@ -267,6 +267,7 @@ TPDirect.card.onUpdate(function (update) {
     } else {
         // Disable submit Button to get prime.
         // submitButton.setAttribute('disabled', true)
+        console.log('order not work');
     }
 
     // cardTypes = ['mastercard', 'visa', 'jcb', 'amex', 'unionpay','unknown']
