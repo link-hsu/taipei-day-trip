@@ -2,6 +2,8 @@
 
 🧭 Taipei Day Trip is an e-commerce website where you can discover tourist attractions in Taipei and book day tours of the sights with *member system*.
 
+🔗 Website URL: https://trip.abinitio.fun/
+
 ## Tools
 - Front-end
   - vanilla HTML and Javascript
